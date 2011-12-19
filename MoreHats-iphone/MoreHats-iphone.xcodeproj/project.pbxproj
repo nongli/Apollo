@@ -1,0 +1,405 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* MoreHats_iphoneAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MoreHats_iphoneAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		28193060112F816700ECF9B4 /* MoreHats_iphone.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2819305F112F816700ECF9B4 /* MoreHats_iphone.xcdatamodeld */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		579EF4EB12D9B1EF00B3E679 /* liblibjasper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4EA12D9B1EF00B3E679 /* liblibjasper.a */; };
+		579EF4ED12D9B1EF00B3E679 /* liblibjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4EC12D9B1EF00B3E679 /* liblibjpeg.a */; };
+		579EF4EF12D9B1EF00B3E679 /* liblibpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4EE12D9B1EF00B3E679 /* liblibpng.a */; };
+		579EF4F112D9B1EF00B3E679 /* liblibtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4F012D9B1EF00B3E679 /* liblibtiff.a */; };
+		579EF4F312D9B1EF00B3E679 /* libopencv_calib3d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4F212D9B1EF00B3E679 /* libopencv_calib3d.a */; };
+		579EF4F512D9B1EF00B3E679 /* libopencv_contrib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4F412D9B1EF00B3E679 /* libopencv_contrib.a */; };
+		579EF4F712D9B1EF00B3E679 /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4F612D9B1EF00B3E679 /* libopencv_core.a */; };
+		579EF4F912D9B1EF00B3E679 /* libopencv_features2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4F812D9B1EF00B3E679 /* libopencv_features2d.a */; };
+		579EF4FB12D9B1EF00B3E679 /* libopencv_flann.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4FA12D9B1EF00B3E679 /* libopencv_flann.a */; };
+		579EF4FD12D9B1EF00B3E679 /* libopencv_gpu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4FC12D9B1EF00B3E679 /* libopencv_gpu.a */; };
+		579EF4FF12D9B1EF00B3E679 /* libopencv_haartraining_engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF4FE12D9B1EF00B3E679 /* libopencv_haartraining_engine.a */; };
+		579EF50112D9B1EF00B3E679 /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF50012D9B1EF00B3E679 /* libopencv_imgproc.a */; };
+		579EF50312D9B1EF00B3E679 /* libopencv_lapack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF50212D9B1EF00B3E679 /* libopencv_lapack.a */; };
+		579EF50512D9B1EF00B3E679 /* libopencv_legacy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF50412D9B1EF00B3E679 /* libopencv_legacy.a */; };
+		579EF50712D9B1EF00B3E679 /* libopencv_ml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF50612D9B1EF00B3E679 /* libopencv_ml.a */; };
+		579EF50912D9B1EF00B3E679 /* libopencv_objdetect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF50812D9B1EF00B3E679 /* libopencv_objdetect.a */; };
+		579EF50B12D9B1EF00B3E679 /* libopencv_video.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF50A12D9B1EF00B3E679 /* libopencv_video.a */; };
+		579EF50D12D9B1EF00B3E679 /* libzlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 579EF50C12D9B1EF00B3E679 /* libzlib.a */; };
+		579EF51412D9B42300B3E679 /* FaceRecognition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 579EF51312D9B42300B3E679 /* FaceRecognition.cpp */; };
+		579EF5E912DC35CF00B3E679 /* MoreHats.mm in Sources */ = {isa = PBXBuildFile; fileRef = 579EF5E712DC35CF00B3E679 /* MoreHats.mm */; };
+		579EF5EB12DC35DE00B3E679 /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = 579EF5EA12DC35DE00B3E679 /* haarcascade_frontalface_default.xml */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* MoreHats_iphoneAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreHats_iphoneAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* MoreHats_iphoneAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreHats_iphoneAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* MoreHats-iphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoreHats-iphone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28C3AD890F43EF2300507BA6 /* MoreHats_iphone.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = MoreHats_iphone.xcdatamodel; sourceTree = "<group>"; };
+		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* MoreHats_iphone_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreHats_iphone_Prefix.pch; sourceTree = "<group>"; };
+		579EF4EA12D9B1EF00B3E679 /* liblibjasper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibjasper.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/liblibjasper.a"; sourceTree = "<absolute>"; };
+		579EF4EC12D9B1EF00B3E679 /* liblibjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibjpeg.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/liblibjpeg.a"; sourceTree = "<absolute>"; };
+		579EF4EE12D9B1EF00B3E679 /* liblibpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibpng.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/liblibpng.a"; sourceTree = "<absolute>"; };
+		579EF4F012D9B1EF00B3E679 /* liblibtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibtiff.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/liblibtiff.a"; sourceTree = "<absolute>"; };
+		579EF4F212D9B1EF00B3E679 /* libopencv_calib3d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_calib3d.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_calib3d.a"; sourceTree = "<absolute>"; };
+		579EF4F412D9B1EF00B3E679 /* libopencv_contrib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_contrib.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_contrib.a"; sourceTree = "<absolute>"; };
+		579EF4F612D9B1EF00B3E679 /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_core.a"; sourceTree = "<absolute>"; };
+		579EF4F812D9B1EF00B3E679 /* libopencv_features2d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_features2d.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_features2d.a"; sourceTree = "<absolute>"; };
+		579EF4FA12D9B1EF00B3E679 /* libopencv_flann.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_flann.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_flann.a"; sourceTree = "<absolute>"; };
+		579EF4FC12D9B1EF00B3E679 /* libopencv_gpu.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_gpu.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_gpu.a"; sourceTree = "<absolute>"; };
+		579EF4FE12D9B1EF00B3E679 /* libopencv_haartraining_engine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_haartraining_engine.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_haartraining_engine.a"; sourceTree = "<absolute>"; };
+		579EF50012D9B1EF00B3E679 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_imgproc.a"; sourceTree = "<absolute>"; };
+		579EF50212D9B1EF00B3E679 /* libopencv_lapack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_lapack.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_lapack.a"; sourceTree = "<absolute>"; };
+		579EF50412D9B1EF00B3E679 /* libopencv_legacy.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_legacy.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_legacy.a"; sourceTree = "<absolute>"; };
+		579EF50612D9B1EF00B3E679 /* libopencv_ml.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_ml.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_ml.a"; sourceTree = "<absolute>"; };
+		579EF50812D9B1EF00B3E679 /* libopencv_objdetect.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_objdetect.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_objdetect.a"; sourceTree = "<absolute>"; };
+		579EF50A12D9B1EF00B3E679 /* libopencv_video.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_video.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libopencv_video.a"; sourceTree = "<absolute>"; };
+		579EF50C12D9B1EF00B3E679 /* libzlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzlib.a; path = "/Users/apanda/code/morehats/morehats/external/iphone-opencv-lib/libzlib.a"; sourceTree = "<absolute>"; };
+		579EF51212D9B41900B3E679 /* FaceRecognition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FaceRecognition.h; path = ../FaceRecognition.h; sourceTree = "<group>"; };
+		579EF51312D9B42300B3E679 /* FaceRecognition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FaceRecognition.cpp; path = ../FaceRecognition.cpp; sourceTree = "<group>"; };
+		579EF55012DAD79100B3E679 /* ApolloCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloCommon.h; sourceTree = SOURCE_ROOT; };
+		579EF55112DAD79100B3E679 /* ApolloMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApolloMath.h; sourceTree = SOURCE_ROOT; };
+		579EF55212DAD79100B3E679 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = SOURCE_ROOT; };
+		579EF55312DAD79100B3E679 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = SOURCE_ROOT; };
+		579EF55412DAD79100B3E679 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = SOURCE_ROOT; };
+		579EF5CB12DADC8800B3E679 /* SimpleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleImage.h; sourceTree = "<group>"; };
+		579EF5E712DC35CF00B3E679 /* MoreHats.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MoreHats.mm; sourceTree = SOURCE_ROOT; };
+		579EF5E812DC35CF00B3E679 /* MoreHats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreHats.h; sourceTree = SOURCE_ROOT; };
+		579EF5EA12DC35DE00B3E679 /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_default.xml; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* MoreHats_iphone-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MoreHats_iphone-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
+				579EF4EB12D9B1EF00B3E679 /* liblibjasper.a in Frameworks */,
+				579EF4ED12D9B1EF00B3E679 /* liblibjpeg.a in Frameworks */,
+				579EF4EF12D9B1EF00B3E679 /* liblibpng.a in Frameworks */,
+				579EF4F112D9B1EF00B3E679 /* liblibtiff.a in Frameworks */,
+				579EF4F312D9B1EF00B3E679 /* libopencv_calib3d.a in Frameworks */,
+				579EF4F512D9B1EF00B3E679 /* libopencv_contrib.a in Frameworks */,
+				579EF4F712D9B1EF00B3E679 /* libopencv_core.a in Frameworks */,
+				579EF4F912D9B1EF00B3E679 /* libopencv_features2d.a in Frameworks */,
+				579EF4FB12D9B1EF00B3E679 /* libopencv_flann.a in Frameworks */,
+				579EF4FD12D9B1EF00B3E679 /* libopencv_gpu.a in Frameworks */,
+				579EF4FF12D9B1EF00B3E679 /* libopencv_haartraining_engine.a in Frameworks */,
+				579EF50112D9B1EF00B3E679 /* libopencv_imgproc.a in Frameworks */,
+				579EF50312D9B1EF00B3E679 /* libopencv_lapack.a in Frameworks */,
+				579EF50512D9B1EF00B3E679 /* libopencv_legacy.a in Frameworks */,
+				579EF50712D9B1EF00B3E679 /* libopencv_ml.a in Frameworks */,
+				579EF50912D9B1EF00B3E679 /* libopencv_objdetect.a in Frameworks */,
+				579EF50B12D9B1EF00B3E679 /* libopencv_video.a in Frameworks */,
+				579EF50D12D9B1EF00B3E679 /* libzlib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				579EF5E712DC35CF00B3E679 /* MoreHats.mm */,
+				579EF5E812DC35CF00B3E679 /* MoreHats.h */,
+				579EF55012DAD79100B3E679 /* ApolloCommon.h */,
+				579EF55112DAD79100B3E679 /* ApolloMath.h */,
+				579EF55212DAD79100B3E679 /* Constants.h */,
+				579EF55312DAD79100B3E679 /* Macros.h */,
+				579EF55412DAD79100B3E679 /* Types.h */,
+				579EF51312D9B42300B3E679 /* FaceRecognition.cpp */,
+				579EF51212D9B41900B3E679 /* FaceRecognition.h */,
+				1D3623240D0F684500981E51 /* MoreHats_iphoneAppDelegate.h */,
+				1D3623250D0F684500981E51 /* MoreHats_iphoneAppDelegate.m */,
+				579EF5CB12DADC8800B3E679 /* SimpleImage.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* MoreHats-iphone.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* MoreHats_iphone_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				579EF5EA12DC35DE00B3E679 /* haarcascade_frontalface_default.xml */,
+				2819305F112F816700ECF9B4 /* MoreHats_iphone.xcdatamodeld */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* MoreHats_iphone-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				28D801B30F44B63D00FB423F /* CoreData.framework */,
+				579EF4EA12D9B1EF00B3E679 /* liblibjasper.a */,
+				579EF4EC12D9B1EF00B3E679 /* liblibjpeg.a */,
+				579EF4EE12D9B1EF00B3E679 /* liblibpng.a */,
+				579EF4F012D9B1EF00B3E679 /* liblibtiff.a */,
+				579EF4F212D9B1EF00B3E679 /* libopencv_calib3d.a */,
+				579EF4F412D9B1EF00B3E679 /* libopencv_contrib.a */,
+				579EF4F612D9B1EF00B3E679 /* libopencv_core.a */,
+				579EF4F812D9B1EF00B3E679 /* libopencv_features2d.a */,
+				579EF4FA12D9B1EF00B3E679 /* libopencv_flann.a */,
+				579EF4FC12D9B1EF00B3E679 /* libopencv_gpu.a */,
+				579EF4FE12D9B1EF00B3E679 /* libopencv_haartraining_engine.a */,
+				579EF50012D9B1EF00B3E679 /* libopencv_imgproc.a */,
+				579EF50212D9B1EF00B3E679 /* libopencv_lapack.a */,
+				579EF50412D9B1EF00B3E679 /* libopencv_legacy.a */,
+				579EF50612D9B1EF00B3E679 /* libopencv_ml.a */,
+				579EF50812D9B1EF00B3E679 /* libopencv_objdetect.a */,
+				579EF50A12D9B1EF00B3E679 /* libopencv_video.a */,
+				579EF50C12D9B1EF00B3E679 /* libzlib.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* MoreHats-iphone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MoreHats-iphone" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MoreHats-iphone";
+			productName = "MoreHats-iphone";
+			productReference = 1D6058910D05DD3D006BFB54 /* MoreHats-iphone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MoreHats-iphone" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* MoreHats-iphone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				579EF5EB12DC35DE00B3E679 /* haarcascade_frontalface_default.xml in Resources */,
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* MoreHats_iphoneAppDelegate.m in Sources */,
+				28193060112F816700ECF9B4 /* MoreHats_iphone.xcdatamodeld in Sources */,
+				579EF51412D9B42300B3E679 /* FaceRecognition.cpp in Sources */,
+				579EF5E912DC35CF00B3E679 /* MoreHats.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MoreHats_iphone_Prefix.pch;
+				INFOPLIST_FILE = "MoreHats_iphone-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../iphone-opencv-2.2.0/Universal/Release\"",
+					"\"$(SRCROOT)/../external/iphone-opencv-lib\"",
+				);
+				OTHER_LDFLAGS = (
+					"-lopencv_core",
+					"-lopencv_imgproc",
+					"-lopencv_calib3d",
+					"-lopencv_video",
+					"-lopencv_features2d",
+					"-lopencv_ml",
+					"-lopencv_objdetect",
+					"-lopencv_contrib",
+					"-lopencv_legacy",
+				);
+				PRODUCT_NAME = "MoreHats-iphone";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MoreHats_iphone_Prefix.pch;
+				INFOPLIST_FILE = "MoreHats_iphone-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../iphone-opencv-2.2.0/Universal/Release\"",
+					"\"$(SRCROOT)/../external/iphone-opencv-lib\"",
+				);
+				OTHER_LDFLAGS = (
+					"-lopencv_core",
+					"-lopencv_imgproc",
+					"-lopencv_calib3d",
+					"-lopencv_video",
+					"-lopencv_features2d",
+					"-lopencv_ml",
+					"-lopencv_objdetect",
+					"-lopencv_contrib",
+					"-lopencv_legacy",
+				);
+				PRODUCT_NAME = "MoreHats-iphone";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../external/iphone-opencv-include/";
+				LIBRARY_SEARCH_PATHS = "";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../external/iphone-opencv-include/";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "MoreHats-iphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MoreHats-iphone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2819305F112F816700ECF9B4 /* MoreHats_iphone.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				28C3AD890F43EF2300507BA6 /* MoreHats_iphone.xcdatamodel */,
+			);
+			currentVersion = 28C3AD890F43EF2300507BA6 /* MoreHats_iphone.xcdatamodel */;
+			path = MoreHats_iphone.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

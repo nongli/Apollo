@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="LinearAccel.cpp">
+      <Filter>Accelerators</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PerspectiveCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="AdaptiveSuperSampler.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="GridSuperSampler.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimarySampler.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplerUtil.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="StochasticSuperSampler.cpp">
+      <Filter>Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="Raytracer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="WhittedRayTracer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="ApolloCommon.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="ApolloStructs.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="KdTree.cpp">
+      <Filter>Accelerators</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AABox.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Accel.h">
+      <Filter>Accelerators</Filter>
+    </ClInclude>
+    <ClInclude Include="LinearAccel.h">
+      <Filter>Accelerators</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PerspectiveCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="InfinitePlane.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="AdaptiveSuperSampler.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimarySampler.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="GridSuperSampler.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplerUtil.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="StochasticSuperSampler.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderBucket.h">
+      <Filter>RenderBucket</Filter>
+    </ClInclude>
+    <ClInclude Include="ScanLineBucket.h">
+      <Filter>RenderBucket</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Raytracer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="WhittedRayTracer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PhongShader.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="BlinnPhongShader.h">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="ApolloEngine.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureSampler.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="ApolloStructs.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="ApolloParser.h">
+      <Filter>Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ApolloAllocator.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineCommon.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="KdTree.h">
+      <Filter>Accelerators</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Geometry">
+      <UniqueIdentifier>{bd300fbe-35a5-41dd-8bd2-461e4c7845c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Accelerators">
+      <UniqueIdentifier>{22fd01ac-a791-4774-a111-1d0983979ffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{66ec8693-1c7e-4c23-9277-4b765501b1b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Samplers">
+      <UniqueIdentifier>{ea231c8b-edac-49c2-b891-2539466a4a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderBucket">
+      <UniqueIdentifier>{339122b8-8221-472d-bcb5-2a9fed26ce19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{9c67bf85-9b15-4e9e-9d97-7e6ee1c65067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{9e073c5d-b9fe-4b6c-80e5-32a805369829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lights">
+      <UniqueIdentifier>{959a2fcd-1ae0-4836-b22b-e5497eb746b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{cd5d743e-9439-44e5-8496-11cde874305c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Includes">
+      <UniqueIdentifier>{a12d59b1-5574-420a-86b2-3640c9b511be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{3ef8f94c-48fb-4c27-937f-82a5a83c76c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{5d6d2121-628c-4039-add2-63b8601296bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parser">
+      <UniqueIdentifier>{71ec7df7-c12a-4f20-add9-ec045566a1c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{3a18fecf-7587-46a0-b658-10242a09a57b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="BasicImageTest.cpp">
+      <Filter>ImageTests</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageFilterTest.cpp">
+      <Filter>ImageTests</Filter>
+    </ClCompile>
+    <ClCompile Include="TwoBallsNoAA.cpp">
+      <Filter>RenderTests</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicIntersectionTest.cpp">
+      <Filter>RenderTests</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckerBoardTest.cpp">
+      <Filter>RenderTests</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicTextureTest.cpp">
+      <Filter>RenderTests</Filter>
+    </ClCompile>
+    <ClCompile Include="ApolloTestFramework.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="ApolloTest.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="PerspectiveCameraBasicTest.cpp">
+      <Filter>CameraTests</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameworkDeleteDir.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularImageTest.cpp">
+      <Filter>ImageTests</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicSceneTest.cpp">
+      <Filter>RenderTests</Filter>
+    </ClCompile>
+    <ClCompile Include="UWParser.cpp">
+      <Filter>Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="AllocatorTest.cpp">
+      <Filter>MiscTests</Filter>
+    </ClCompile>
+    <ClCompile Include="ApolloTestMain.cpp" />
+    <ClCompile Include="CocParserTest.cpp">
+      <Filter>Parser</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ApolloTest.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="ApolloTestFramework.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraTests.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTests.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageTests.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="UWParser.h">
+      <Filter>Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscTests.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+    <ClInclude Include="CoCParserTest.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ImageTests">
+      <UniqueIdentifier>{8c921c14-21de-4d04-8c81-01cec794af2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderTests">
+      <UniqueIdentifier>{d7ee63a8-6339-4725-8861-cae8369694c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{652d9611-4055-4d7d-8a77-83414dc49db6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CameraTests">
+      <UniqueIdentifier>{b8fd49f8-5d5e-47a4-8693-fb360aac787e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Includes">
+      <UniqueIdentifier>{ae135288-ffee-4fe5-ace8-df53154d5511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Parser">
+      <UniqueIdentifier>{8022c92c-105e-4d91-9c26-faf9362c2b08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MiscTests">
+      <UniqueIdentifier>{b8e1df39-299f-4265-adf0-4493e4b5482a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

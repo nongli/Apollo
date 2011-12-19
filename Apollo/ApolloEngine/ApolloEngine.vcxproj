@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B91ED448-5977-47CE-8FDB-E7DE9D3D1789}</ProjectGuid>
+    <RootNamespace>ApolloEngine</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30128.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\Bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\bin\Intermediate\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\Bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\bin\Intermediate\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\ApolloEngine;..\ImageIO;..\ImageLibrary;..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\ApolloEngine;..\ImageIO;..\ImageLibrary;..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AdaptiveSuperSampler.cpp" />
+    <ClCompile Include="GridSuperSampler.cpp" />
+    <ClCompile Include="KdTree.cpp" />
+    <ClCompile Include="PrimarySampler.cpp" />
+    <ClCompile Include="Raytracer.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="SamplerUtil.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="StochasticSuperSampler.cpp" />
+    <ClCompile Include="ApolloCommon.cpp" />
+    <ClCompile Include="ApolloStructs.cpp" />
+    <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="PerspectiveCamera.cpp" />
+    <ClCompile Include="LinearAccel.cpp" />
+    <ClCompile Include="WhittedRayTracer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AdaptiveSuperSampler.h" />
+    <ClInclude Include="ApolloAllocator.h" />
+    <ClInclude Include="BlinnPhongShader.h" />
+    <ClInclude Include="GridSuperSampler.h" />
+    <ClInclude Include="KdTree.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="ApolloParser.h" />
+    <ClInclude Include="PhongShader.h" />
+    <ClInclude Include="PrimarySampler.h" />
+    <ClInclude Include="Raytracer.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="SamplerUtil.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="StochasticSuperSampler.h" />
+    <ClInclude Include="ApolloEngine.h" />
+    <ClInclude Include="EngineCommon.h" />
+    <ClInclude Include="ApolloStructs.h" />
+    <ClInclude Include="AABox.h" />
+    <ClInclude Include="InfinitePlane.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="Primitive.h" />
+    <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Triangle.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="PerspectiveCamera.h" />
+    <ClInclude Include="Accel.h" />
+    <ClInclude Include="LinearAccel.h" />
+    <ClInclude Include="RenderBucket.h" />
+    <ClInclude Include="ScanLineBucket.h" />
+    <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="TextureSampler.h" />
+    <ClInclude Include="WhittedRayTracer.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

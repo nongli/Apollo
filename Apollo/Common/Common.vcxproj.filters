@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="ArgsParser.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="UIHelper.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Color4f.cpp">
+      <Filter>Color</Filter>
+    </ClCompile>
+    <ClCompile Include="Logging.cpp">
+      <Filter>Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="Filesystem.cpp">
+      <Filter>Filesystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Macros.h" />
+    <ClInclude Include="Types.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="OrthonormalBasis.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Primes.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Rand.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ApolloMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ArgsParser.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>Errors</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="UIHelper.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="ApolloCommon.h" />
+    <ClInclude Include="Color4f.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="Logging.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Filesystem.h">
+      <Filter>Filesystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{ecbda46e-bef7-4d1f-a767-eaae266b9e13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{1005f0c2-9db2-4c44-8c7c-571273489b20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Errors">
+      <UniqueIdentifier>{9759b1c8-091c-4bef-9b26-f2218673100e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{61826cde-6623-47e3-998e-538ba2d55592}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Color">
+      <UniqueIdentifier>{464e25dc-5a77-4c64-8ba6-9a5425852db1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{adc3f103-44ab-4836-9d0a-e6ff552d75ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Filesystem">
+      <UniqueIdentifier>{e6ca4973-d440-405a-9e5c-ef0f13cc1367}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Vector3.inl">
+      <Filter>Math</Filter>
+    </None>
+  </ItemGroup>
+</Project>
