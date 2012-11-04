@@ -50,6 +50,11 @@ namespace Apollo {
 	    void Set(const DOUBLE min[3], const DOUBLE max[3]);
 	    AABox& operator= (const AABox& b);
 
+		bool IsUnbounded() const {
+			return min[0] == -INFINITY || min[1] == -INFINITY || min[2] == -INFINITY ||
+				   max[0] == INFINITY || max[1] == INFINITY || max[2] == INFINITY;
+		}
+
 #pragma warning( disable : 4201 )
 	    union {
 			struct {
@@ -268,7 +273,7 @@ namespace Apollo {
     }
 
     inline void AABox::GetNormalAndUV(SurfaceElement& surfel) const {
-		//Figure out which face it hit
+		// Figure out which face it hit
 		const Vector3& i = surfel.iPoint;
 		surfel.normal = Vector3::ZERO();
 
@@ -282,8 +287,7 @@ namespace Apollo {
 				return;
 			}
 		}
-		
-		Apollo::ApolloException::NotYetImplemented();
+		// TODO assign UV
     }
 
     inline FLOAT AABox::SurfaceArea() const {

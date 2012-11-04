@@ -162,6 +162,9 @@
     <ClInclude Include="KdTree.h">
       <Filter>Accelerators</Filter>
     </ClInclude>
+    <ClInclude Include="Metrics.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Geometry">
@@ -205,6 +208,9 @@
     </Filter>
     <Filter Include="Memory">
       <UniqueIdentifier>{3a18fecf-7587-46a0-b658-10242a09a57b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{780fbfae-a503-450b-b970-7f9daf9d6242}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -91,6 +91,7 @@
     <ClInclude Include="KdTree.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="ApolloParser.h" />
+    <ClInclude Include="Metrics.h" />
     <ClInclude Include="PhongShader.h" />
     <ClInclude Include="PrimarySampler.h" />
     <ClInclude Include="Raytracer.h" />

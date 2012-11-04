@@ -12,6 +12,7 @@ Color4f WhittedRayTracer::RayTrace(const Ray* ray) {
 
     Accel* accel = m_scene->GetAccel();
     if (accel->Intersect(*ray, intersection)) {
+		color = Color4f::RED();
         surfel.Init(&intersection, ray);
         const Shader* shader = surfel.intersection->primitive->GetShader();
         if (shader) {

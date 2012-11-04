@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "KdTree.h"
 #include "LinearAccel.h"
 
 using namespace std;
@@ -38,9 +39,7 @@ void Scene::Initialize() {
     assert (m_camera != nullptr);
     if (!m_lightDirty && !m_geometryDirty && !m_cameraDirty) return;
 
-    if (m_accel == nullptr) {
-        m_accel = new LinearAccel;
-    }
+    if (m_accel == nullptr) m_accel = new KdTree;
 
     for (UINT i = 0; i < m_models.size(); ++i) {
         m_models[i]->Init();

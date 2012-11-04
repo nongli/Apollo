@@ -29,16 +29,21 @@ namespace Apollo {
     private:
         void BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const std::vector<UINT>& primitives);
         UINT32 ComputeSplitPlanes(KdSplitPlane* splits, const std::vector<UINT32>& primitives, KdDim dim);
+		void CompressTree2();
 
 	private:
         struct KdNode* m_root;
         AABox m_bounds;
-        UINT32 m_size;
-        UINT32 m_nextNode;
-        UINT32 m_totalChildren;
+        UINT32 m_byte_size;
+        UINT32 m_next_node;
+        UINT32 m_total_children;
         bool m_dirty;
 		std::vector<const Primitive*> m_primitives;
-        std::vector<UINT> m_primitivesIndex;
+
+		// Primitives that are not bounded (e.g. infinite plane) and not stored in the tree structure
+		std::vector<const Primitive*> m_unbounded_primitives;
+
+        std::vector<UINT> m_primitives_index;
 		std::vector<Model*>	m_models;
     };
 };
