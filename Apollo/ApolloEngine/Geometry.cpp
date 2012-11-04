@@ -17,6 +17,7 @@ void Sphere::GetPrimitives(std::vector<const Primitive*>& res) const {
 };
 
 void Sphere::GetAABoundingBox(AABox& box) const {
+	box.Reset();
 	Vector3 rad = Vector3(radius, radius, radius);
 	box.Add(center - rad);
 	box.Add(center + rad);
@@ -38,6 +39,7 @@ void AABox::GetPrimitives(std::vector<const Primitive*>& res) const {
 };
 
 void AABox::GetAABoundingBox(AABox& box) const {
+	box.Reset();
 	box.Add(Vector3(min));
 	box.Add(Vector3(max));
 }

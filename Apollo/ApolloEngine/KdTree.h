@@ -29,10 +29,23 @@ namespace Apollo {
     private:
         void BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const std::vector<UINT>& primitives);
         UINT32 ComputeSplitPlanes(KdSplitPlane* splits, const std::vector<UINT32>& primitives, KdDim dim);
-		void CompressTree2();
+		void PartitionTriangles(const KdSplitPlane* splits, UINT32 n, const std::vector<UINT32>& primitives,
+			std::vector<UINT32>& left, std::vector<UINT32>& right, float split);
+		void CompactTree();
 
 	private:
-        struct KdNode* m_root;
+		struct KdBuildNode {
+			bool isLeaf;
+			UINT32 num_children;
+			UINT32* children;
+			KdDim dimension;
+			FLOAT split;
+			UINT32 offset;
+		};
+        
+		struct KdNode* m_root;
+
+	private:
         AABox m_bounds;
         UINT32 m_byte_size;
         UINT32 m_next_node;
@@ -45,6 +58,10 @@ namespace Apollo {
 
         std::vector<UINT> m_primitives_index;
 		std::vector<Model*>	m_models;
+
+		std::vector<KdSplitPlane> m_all_splits[3];
+		std::vector<char> m_split_buffer;
+		std::vector<KdBuildNode> m_build_tree;
     };
 };
 

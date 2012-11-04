@@ -75,6 +75,7 @@ Triangle::~Triangle() {
 }
 
 void Triangle::GetAABoundingBox(AABox& b) const {
+	b.Reset();
     b.Add(mesh->m_vertices[data.A]);
     b.Add(mesh->m_vertices[data.B]);
     b.Add(mesh->m_vertices[data.C]);

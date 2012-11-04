@@ -55,6 +55,12 @@ namespace Apollo {
 				   max[0] == INFINITY || max[1] == INFINITY || max[2] == INFINITY;
 		}
 
+		void Reset() {
+			min[0] = min[1] = min[2] = INFINITY;    
+			max[0] = max[1] = max[2] = -INFINITY;    
+			span[0] = span[1] = span[2] = 0;
+		}
+
 #pragma warning( disable : 4201 )
 	    union {
 			struct {
@@ -70,9 +76,7 @@ namespace Apollo {
     };
 
 	inline AABox::AABox() : Primitive(nullptr) {
-		min[0] = min[1] = min[2] = INFINITY;    
-		max[0] = max[1] = max[2] = -INFINITY;    
-		span[0] = span[1] = span[2] = 0;
+		Reset();
 	}
 
 	inline AABox::AABox(DOUBLE minx, DOUBLE miny, DOUBLE minz,

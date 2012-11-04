@@ -52,16 +52,16 @@ struct KdSplitPlane {
 	bool operator== (const KdSplitPlane& p) const {
 		return EQ(split, p.split) && dim == p.dim && type == p.type;
 	}
+
+	string DebugString() const {
+		stringstream ss;
+		ss << "Split: " << split 
+		   << " Dim: " << dim
+		   << " Type: " << type;
+		return ss.str();
+	}
 };
 
-struct KdBuildNode {
-    bool isLeaf;
-    UINT32 num_children;
-    UINT32* children;
-    KdDim dimension;
-    FLOAT split;
-    UINT32 offset;
-};
 
 struct KdStackNode {
     KdNode* node;
@@ -69,9 +69,6 @@ struct KdStackNode {
     double t_far;
 };
 
-vector<KdSplitPlane> all_splits[3];
-vector<char> split_buffer;
-vector<KdBuildNode> build_tree;
 
 #define KD_ISLEAF(n)	((n)->d & (UINT32)(1 << 31))
 #define KD_DIM(n)	((n)->d & 0x3)
@@ -118,7 +115,7 @@ bool KdTree::Rebuild() {
     if (m_root) free(m_root);
     m_root = nullptr;
 
-    build_tree.resize(KD_START_SIZE);
+    m_build_tree.resize(KD_START_SIZE);
 
     // Find bounding box
     AABox primitiveBox;
@@ -133,9 +130,9 @@ bool KdTree::Rebuild() {
 
     // Allocate split plane memory
     for (UINT32 i = 0; i < 3; ++i) {
-        all_splits[i].resize(2 * m_primitives.size());
+        m_all_splits[i].resize(2 * m_primitives.size());
     }
-    split_buffer.resize(m_primitives.size());
+    m_split_buffer.resize(m_primitives.size());
     m_primitives_index.resize(m_primitives.size());
     for (UINT32 i = 0; i < m_primitives.size(); ++i) {
         m_primitives_index[i] = i;
@@ -144,7 +141,7 @@ bool KdTree::Rebuild() {
 	m_total_children = 0;
     m_next_node = 2;
     BuildTree(m_bounds, 0, 1, m_primitives_index);
-	CompressTree2();
+	CompactTree();
 
     return true;
 }
@@ -161,19 +158,19 @@ UINT32 KdTree::ComputeSplitPlanes(KdSplitPlane* splits, const vector<UINT32>& pr
 	        splits[n].dim = dim;
             splits[n].split = (FLOAT)box.min[dim];
 	        splits[n].primitive = primitives[i];
-	        splits[n].type = KdSplitPlane :: PLANE;
+	        splits[n].type = KdSplitPlane::PLANE;
 	        n++;
 	    } else {
 	        splits[n].dim = dim;
+	        splits[n].type = KdSplitPlane::ENTER;
             splits[n].split = (FLOAT)box.min[dim];
 	        splits[n].primitive = primitives[i];
-	        splits[n].type = KdSplitPlane :: ENTER;
 	        n++;
 
 	        splits[n].dim = dim;
-	        splits[n].split = (FLOAT)box.max[dim];
-	        splits[n].type = KdSplitPlane :: EXIT;
 	        splits[n].primitive = primitives[i];
+	        splits[n].split = (FLOAT)box.max[dim];
+	        splits[n].type = KdSplitPlane::EXIT;
 	        n++;
 	    }
     }		
@@ -197,44 +194,43 @@ FLOAT ComputeCost(const AABox bb, FLOAT split, KdDim dim, UINT l, UINT r, UINT p
     return cost;
 }
 
-void PartitionTriangles(const KdSplitPlane* splits, UINT32 n, const vector<UINT32> primitives,
+void KdTree::PartitionTriangles(const KdSplitPlane* splits, UINT32 n, const vector<UINT32>& primitives,
     vector<UINT32>& left, vector<UINT32>& right, float split) {
 
     const char SPLIT_BOTH = 0;
     const char SPLIT_LEFT = 1;
     const char SPLIT_RIGHT = 2;
 
-    memset(&split_buffer[0], SPLIT_BOTH, sizeof(char) * split_buffer.size());
+    memset(&m_split_buffer[0], SPLIT_BOTH, sizeof(char) * m_split_buffer.size());
 
     for (UINT32 i = 0; i < n; ++i) {
 	    if (splits[i].type == KdSplitPlane::EXIT && splits[i].split <= split) {
-            split_buffer[splits[i].primitive] = SPLIT_LEFT;
+            m_split_buffer[splits[i].primitive] = SPLIT_LEFT;
 	    } else if (splits[i].type == KdSplitPlane::ENTER && splits[i].split >= split) {
-            split_buffer[splits[i].primitive] = SPLIT_RIGHT;
+            m_split_buffer[splits[i].primitive] = SPLIT_RIGHT;
 	    } else if (splits[i].type == KdSplitPlane::PLANE) {
 	        if (splits[i].split < split) {
-                split_buffer[splits[i].primitive] = SPLIT_LEFT;
+                m_split_buffer[splits[i].primitive] = SPLIT_LEFT;
             } else if (splits[i].split > split) {
-				split_buffer[splits[i].primitive] = SPLIT_RIGHT;
+				m_split_buffer[splits[i].primitive] = SPLIT_RIGHT;
             }
 	    }
     }
 
     for (UINT32 i = 0; i < primitives.size(); ++i) {
         UINT32 primitive = primitives[i];
-        if (split_buffer[primitive] == SPLIT_BOTH) {
+        if (m_split_buffer[primitive] == SPLIT_BOTH) {
             left.push_back(primitive);
             right.push_back(primitive);
-	    } else if (split_buffer[primitive] == SPLIT_LEFT) {
+	    } else if (m_split_buffer[primitive] == SPLIT_LEFT) {
             left.push_back(primitive);
-	    } else if (split_buffer[primitive] == SPLIT_RIGHT) {
+	    } else if (m_split_buffer[primitive] == SPLIT_RIGHT) {
             right.push_back(primitive);
 	    }
     }
 }
 
 void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<UINT32>& primitives) {
-
     FLOAT split, tsa, inv_tsa;
     KdDim split_dim = DIM_INVALID;
     FLOAT cost = INFINITY;
@@ -254,7 +250,7 @@ void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<
 	    assert(inv_tsa > 0);
 
 	    for (int dim = 0; dim < 3; ++dim) {
-	        splits = &(all_splits[dim][0]);
+	        splits = &(m_all_splits[dim][0]);
 	        num_splits[dim] = ComputeSplitPlanes(splits, primitives, (KdDim)dim);
 
 	        UINT32 n_left = 0;
@@ -311,15 +307,15 @@ void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<
 
     /* this node will be split and is an internal node */
     if (split_dim != DIM_INVALID) {
-        PartitionTriangles(&all_splits[split_dim][0], num_splits[split_dim], primitives, 
+        PartitionTriangles(&m_all_splits[split_dim][0], num_splits[split_dim], primitives, 
             leftPrimitives, rightPrimitives, split);
         UINT32 lChild = m_next_node;
         UINT32 rChild = m_next_node + 1;
-        build_tree[curr].children = 0;
-        build_tree[curr].isLeaf = 0;
-        build_tree[curr].offset = lChild - curr;
-        build_tree[curr].dimension = split_dim;
-        build_tree[curr].split = split;
+        m_build_tree[curr].children = 0;
+        m_build_tree[curr].isLeaf = 0;
+        m_build_tree[curr].offset = lChild - curr;
+        m_build_tree[curr].dimension = split_dim;
+        m_build_tree[curr].split = split;
 	    m_next_node += 2;
 
         AABox child = bb;
@@ -330,18 +326,20 @@ void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<
         BuildTree(child, depth + 1, rChild, rightPrimitives);
     } else {
         m_total_children += primitives.size();
-	    UINT32* children = (UINT32*) malloc(sizeof(UINT32) * primitives.size());
-	    assert((int)children % 4 == 0);
-		if (!primitives.empty()) {
+		if (primitives.size() != 0) {
+			UINT32* children = (UINT32*) malloc(sizeof(UINT32) * primitives.size());
+			assert((int)children % 4 == 0);
 			memcpy(children, &primitives[0], sizeof(UINT32) * primitives.size());
+			m_build_tree[curr].children = children;
+		} else {
+			m_build_tree[curr].children = NULL;
 		}
-        build_tree[curr].children = children;
-        build_tree[curr].isLeaf = 1;
-        build_tree[curr].num_children = primitives.size();
+        m_build_tree[curr].isLeaf = 1;
+        m_build_tree[curr].num_children = primitives.size();
     }
 }
 
-void KdTree::CompressTree2() {
+void KdTree::CompactTree() {
 	int num_nodes = m_next_node;
 	m_byte_size = sizeof(KdNode) * num_nodes + m_total_children * sizeof(UINT32);
 	m_root = (KdNode*)malloc(m_byte_size);
@@ -350,30 +348,30 @@ void KdTree::CompressTree2() {
     int* children = (int*) cStart;
 
     for (unsigned int i = 1; i < num_nodes; ++i) {
-		if (build_tree[i].isLeaf) {
-			memcpy(children, build_tree[i].children, sizeof(int)*build_tree[i].num_children);
+		if (m_build_tree[i].isLeaf) {
+			memcpy(children, m_build_tree[i].children, sizeof(int)*m_build_tree[i].num_children);
 			int offset = ((char*)children - (char*)&m_root[i]);
 			assert(offset > 0);
-			KD_INIT_LEAF(m_root[i], build_tree[i].num_children, offset);
-			children += build_tree[i].num_children;
+			KD_INIT_LEAF(m_root[i], m_build_tree[i].num_children, offset);
+			children += m_build_tree[i].num_children;
 		} else {
-			int offset = build_tree[i].offset * sizeof(KdNode);
-			int dim = build_tree[i].dimension;
-			float s = build_tree[i].split;
+			int offset = m_build_tree[i].offset * sizeof(KdNode);
+			int dim = m_build_tree[i].dimension;
+			float s = m_build_tree[i].split;
 			assert(offset > 0);
 			KD_INIT_INTERNAL(m_root[i], dim, offset, s);
 		}
     }
 
     for (unsigned int i = 1; i < num_nodes; ++i) {
-		if (build_tree[i].isLeaf) free(build_tree[i].children);
+		if (m_build_tree[i].isLeaf) free(m_build_tree[i].children);
 	}
 
-	build_tree.clear();
-	all_splits[0].clear();
-	all_splits[1].clear();
-	all_splits[2].clear();
-	split_buffer.clear();
+	m_build_tree.clear();
+	m_all_splits[0].clear();
+	m_all_splits[1].clear();
+	m_all_splits[2].clear();
+	m_split_buffer.clear();
 }
 
 bool KdTree::Intersect(const Ray& ray) const {
