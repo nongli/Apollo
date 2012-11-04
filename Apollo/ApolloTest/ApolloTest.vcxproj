@@ -50,6 +50,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>CocParser.lib;ImageIO.lib;Common.lib;ImageLibrary.lib;ApolloEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -78,6 +79,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SnowFlakeAccelTest.cpp" />
+    <ClCompile Include="AccelTest.h" />
     <ClCompile Include="AllocatorTest.cpp" />
     <ClCompile Include="ApolloTest.cpp" />
     <ClCompile Include="ApolloTestFramework.cpp" />
@@ -91,6 +94,7 @@
     <ClCompile Include="BasicIntersectionTest.cpp" />
     <ClCompile Include="BasicTextureTest.cpp" />
     <ClCompile Include="CheckerBoardTest.cpp" />
+    <ClCompile Include="ProceduralScenes.cpp" />
     <ClCompile Include="TwoBallsNoAA.cpp" />
     <ClCompile Include="PerspectiveCameraBasicTest.cpp" />
     <ClCompile Include="UWParser.cpp" />
@@ -101,6 +105,7 @@
     <ClInclude Include="CoCParserTest.h" />
     <ClInclude Include="ImageTests.h" />
     <ClInclude Include="MiscTests.h" />
+    <ClInclude Include="ProceduralScenes.h" />
     <ClInclude Include="RenderTests.h" />
     <ClInclude Include="CameraTests.h" />
     <ClInclude Include="UWParser.h" />

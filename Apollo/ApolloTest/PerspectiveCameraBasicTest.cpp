@@ -2,15 +2,6 @@
 
 using namespace Apollo;
 
-PerspectiveCameraBasicTest::PerspectiveCameraBasicTest() : ApolloTest() {
-}
-
-void PerspectiveCameraBasicTest::Init() {
-    ImageIO::Init();
-    Timer::Init();
-    SamplerUtil::Init(false);
-}
-
 bool PerspectiveCameraBasicTest::Execute() {    
     Image image(640, 480);
 
@@ -89,6 +80,3 @@ bool PerspectiveCameraBasicTest::Execute() {
     return passed;
 }
 
-void PerspectiveCameraBasicTest::Cleanup() {
-    Apollo::ImageIO::Destroy();
-}

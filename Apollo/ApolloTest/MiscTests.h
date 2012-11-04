@@ -4,7 +4,6 @@
 
 class AllocatorTest : public ApolloTest {
 public:
-    AllocatorTest();
     void Init();
     bool Execute();
     void Cleanup();

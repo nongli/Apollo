@@ -10,6 +10,7 @@ const UINT64 ApolloTestRenderBase   =   1 << 2;
 const UINT64 ApolloTestCamera		=	1 << 3;
 const UINT64 ApolloTestAntialiasing	=	1 << 4;
 const UINT64 ApolloTestParser	    =	1 << 5;
+const UINT64 ApolloTestAccel	    =	1 << 6;
 
 class ApolloTest;
 

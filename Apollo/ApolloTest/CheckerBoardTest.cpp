@@ -3,15 +3,6 @@
 using namespace Apollo;
 using namespace std;
 
-CheckerboardTest::CheckerboardTest() : ApolloTest() {
-}
-
-void CheckerboardTest::Init() {
-    ImageIO::Init();
-    Timer::Init();
-    SamplerUtil::Init(false);
-}
-
 bool CheckerboardTest::Execute() {    
 	auto_ptr<Image> checkerboard(ApolloTestFramework::LoadImage("Checkerboard.png", ApolloTestFramework::DATA_IMAGE));
     Texture2D texture(checkerboard.get());
@@ -123,6 +114,3 @@ bool CheckerboardTest::Execute() {
     return passed;
 }
 
-void CheckerboardTest::Cleanup() {
-    Apollo::ImageIO::Destroy();
-}

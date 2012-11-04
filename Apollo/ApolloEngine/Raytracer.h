@@ -34,5 +34,6 @@ namespace Apollo {
         PrimarySampler* m_primarySampler;
         RenderBucket* m_renderBucket;
         const Scene* m_scene;
+		Shader* m_env_shader;
     };
 }

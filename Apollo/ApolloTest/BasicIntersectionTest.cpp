@@ -2,15 +2,6 @@
 
 using namespace Apollo;
 
-BasicIntersectionTest::BasicIntersectionTest() : ApolloTest() {
-}
-
-void BasicIntersectionTest::Init() {
-    ImageIO::Init();
-    Timer::Init();
-    SamplerUtil::Init(false);
-}
-
 bool BasicIntersectionTest::Execute() {    
     Image image(640, 480);
 
@@ -92,8 +83,4 @@ bool BasicIntersectionTest::Execute() {
     bool passed = true;
     passed &= ApolloTestFramework::Instance()->ProcessResult(this, &image, "BasicIntersection.png");
     return passed;
-}
-
-void BasicIntersectionTest::Cleanup() {
-    Apollo::ImageIO::Destroy();
 }

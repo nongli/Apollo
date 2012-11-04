@@ -6,6 +6,7 @@
 #include "ImageTests.h"
 #include "MiscTests.h"
 #include "RenderTests.h"
+#include "AccelTest.h"
 
 ApolloTestFramework g_TestFramework(true);
 
@@ -21,8 +22,8 @@ void EnableAllTests() {
     g_TestFramework.AddTest(new BasicSceneTest(), 9);
     g_TestFramework.AddTest(new AllocatorTest(), 10);
     g_TestFramework.AddTest(new CocParserTest(), 11);
+    g_TestFramework.AddTest(new AccelTest(), 12);
 }
-
 
 void DisplayResults() {
     printf("Total Tests: %d\n", g_TestFramework.GetNumTestsRun());
@@ -64,7 +65,9 @@ int main(int argc, char** argv) {
 	//g_TestFramework.ExecuteTestNum(8);
 	//g_TestFramework.ExecuteTestNum(9);
 	//g_TestFramework.ExecuteTestNum(10);
-	g_TestFramework.ExecuteTestNum(11);
+	//g_TestFramework.ExecuteTestNum(11);
+	
+	g_TestFramework.ExecuteTestNum(12);
 
     printf("\n\n");
     DisplayResults();

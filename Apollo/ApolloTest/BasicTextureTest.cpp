@@ -2,15 +2,6 @@
 
 using namespace Apollo;
 
-BasicTextureTest::BasicTextureTest() : ApolloTest() {
-}
-
-void BasicTextureTest::Init() {
-    ImageIO::Init();
-    Timer::Init();
-    SamplerUtil::Init(false);
-}
-
 bool BasicTextureTest::Execute() {    
     std::auto_ptr<Image> lena(ApolloTestFramework::LoadImage("Lena.png", ApolloTestFramework::DATA_IMAGE));
     Texture2D texture(lena.get());
@@ -117,6 +108,3 @@ bool BasicTextureTest::Execute() {
     return passed;
 }
 
-void BasicTextureTest::Cleanup() {
-    Apollo::ImageIO::Destroy();
-}

@@ -33,10 +33,6 @@ struct Bar {
 };
 
 
-AllocatorTest::AllocatorTest() : ApolloTest()
-{
-}
-
 void AllocatorTest::Init()
 {
 }

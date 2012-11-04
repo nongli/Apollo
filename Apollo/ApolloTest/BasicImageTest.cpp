@@ -2,14 +2,6 @@
 
 using namespace Apollo;
 
-BasicImageTest::BasicImageTest() : ApolloTest() {
-}
-
-void BasicImageTest::Init() {
-    ImageIO::Init();
-    Timer::Init();
-}
-
 bool BasicImageTest::Execute() {
     m_timer.Start();
 
@@ -62,6 +54,3 @@ bool BasicImageTest::Execute() {
     return true;
 }
 
-void BasicImageTest::Cleanup() {
-    Apollo::ImageIO::Destroy();
-}

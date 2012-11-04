@@ -2,14 +2,6 @@
 
 using namespace Apollo;
 
-ImageFilterTest::ImageFilterTest() : ApolloTest() {
-}
-
-void ImageFilterTest::Init() {
-    ImageIO::Init();
-    Timer::Init();
-}
-
 bool ImageFilterTest::Execute() {    
     m_timer.Start();
 
@@ -44,8 +36,4 @@ bool ImageFilterTest::Execute() {
     passed &= ApolloTestFramework::Instance()->ProcessResult(this, image, "LightHouseGrayscale.png");
 
     return passed;
-}
-
-void ImageFilterTest::Cleanup() {
-    Apollo::ImageIO::Destroy();
 }

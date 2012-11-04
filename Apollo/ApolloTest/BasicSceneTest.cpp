@@ -2,15 +2,6 @@
 
 using namespace Apollo;
 
-BasicSceneTest::BasicSceneTest() : ApolloTest() {
-}
-
-void BasicSceneTest::Init() {
-    ImageIO::Init();
-    Timer::Init();
-    SamplerUtil::Init(false);
-}
-
 bool BasicSceneTest::Execute() {    
     m_timer.Start();
     
@@ -68,6 +59,3 @@ bool BasicSceneTest::Execute() {
     return passed;
 }
 
-void BasicSceneTest::Cleanup() {
-    Apollo::ImageIO::Destroy();
-}

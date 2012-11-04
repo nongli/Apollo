@@ -52,6 +52,9 @@
     <ClCompile Include="KdTree.cpp">
       <Filter>Accelerators</Filter>
     </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Lights</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AABox.h">

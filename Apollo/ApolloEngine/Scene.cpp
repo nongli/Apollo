@@ -8,6 +8,7 @@ namespace Apollo {
 Scene::Scene(const string& name) : m_name(name),
     m_accel(nullptr),
     m_camera(nullptr),
+	m_env_shader(nullptr),
     m_lightDirty(false),
     m_cameraDirty(false),
     m_geometryDirty(true),
@@ -27,6 +28,12 @@ void Scene::AddLight(Light* light) {
     m_lightDirty = true;
 }
 
+void Scene::AddLights(const vector<Light*>& lights) {
+	for (size_t i = 0; i < lights.size(); ++i) {
+		AddLight(lights[i]);
+	}
+}
+
 void Scene::Initialize() {
     assert (m_camera != nullptr);
     if (!m_lightDirty && !m_geometryDirty && !m_cameraDirty) return;
@@ -35,7 +42,7 @@ void Scene::Initialize() {
         m_accel = new LinearAccel;
     }
 
-    for (UINT i = 0; i < m_models.size(); i++) {
+    for (UINT i = 0; i < m_models.size(); ++i) {
         m_models[i]->Init();
         m_accel->AddGeometry(m_models[i]);
     }

@@ -51,7 +51,6 @@ namespace Apollo {
                     }
                     diffuse.MultAggregate(lightColor, LN);
                 }
-
             }
 
             return diffuseColor*diffuse + specularColor*specular;

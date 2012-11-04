@@ -4,19 +4,6 @@
 using namespace Apollo;
 using namespace std;
 
-CocParserTest::CocParserTest() : ApolloTest() {
-}
-
-void CocParserTest::Init() {
-    ImageIO::Init();
-    Timer::Init();
-    SamplerUtil::Init(false);
-}
-
-void CocParserTest::Cleanup() {
-    Apollo::ImageIO::Destroy();
-}
-
 bool CocParserTest::Execute() {
     Scene scene;
     m_timer.Start();

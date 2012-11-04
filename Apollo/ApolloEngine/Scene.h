@@ -29,21 +29,29 @@ namespace Apollo {
 
         // Add a model to the scene
         void AddModel(Model* m) { m_models.push_back(m); m_geometryDirty = true;}
+
+		void AddModels(const std::vector<Model*>& models) {
+			m_models.insert(m_models.end(), models.begin(), models.end());
+			m_geometryDirty = true;
+		}
         
         // Add a light to the scene
         void AddLight(Light* light);
+		void AddLights(const std::vector<Light*>& lights);
 
         // Sets the accelerator data structure
         void SetAccel(Accel* accel) { m_accel = accel; m_geometryDirty = true;}
 
-        // Returns total ambient light in the scene
-        const Color4f& GetAmbientLight() const { return m_ambientLight; }
+		// Sets the environment shader for rays that do not hit anything
+		void SetEnvironmentShader(Shader* s) { m_env_shader = s; }
 
     // Functions to access objects
     public:
         PoolAllocator* GetAllocator() { return &m_allocator; }
         Camera* GetCamera() const { return m_camera; }
         Accel* GetAccel() const { return m_accel; }
+		Shader* GetEnvironmentShader() const { return m_env_shader; }
+        const Color4f& GetAmbientLight() const { return m_ambientLight; }
         const std::vector<Light*>& GetLights() const { return m_lights; }
 
     private:
@@ -54,6 +62,7 @@ namespace Apollo {
         Accel* m_accel;
         std::vector<Model*> m_models;
         std::vector<Light*> m_lights;
+		Shader* m_env_shader;
 
         bool m_cameraDirty;
         bool m_geometryDirty;

@@ -67,6 +67,7 @@
     <ClCompile Include="AdaptiveSuperSampler.cpp" />
     <ClCompile Include="GridSuperSampler.cpp" />
     <ClCompile Include="KdTree.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="PrimarySampler.cpp" />
     <ClCompile Include="Raytracer.cpp" />
     <ClCompile Include="Renderer.cpp" />

@@ -122,8 +122,7 @@ int AATest() {
 
 void GenerateSnowFlake(int depth, vector<Model*>& model, Sphere* sphere) {
 	model.push_back(sphere);
-	if (depth == 0)
-		return;
+	if (depth == 0) return;
 
 	DOUBLE locoffset	= sphere->radius / 2 + sphere->radius;
 	FLOAT size			= sphere->radius / 2;

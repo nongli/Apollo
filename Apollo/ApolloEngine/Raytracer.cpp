@@ -13,6 +13,7 @@ RayTracer::RayTracer(const std::string& name) :
 const Image* RayTracer::Render(const Scene* scene, const Rect<UINT>& region) {
     assert (scene != nullptr);
     m_scene = scene;
+	m_env_shader = scene->GetEnvironmentShader();
 
     InitializeInternal();
     Initialize();

@@ -2,15 +2,6 @@
 
 using namespace Apollo;
 
-TwoBallsNoAATest::TwoBallsNoAATest() : ApolloTest() {
-}
-
-void TwoBallsNoAATest::Init() {
-    ImageIO::Init();
-    Timer::Init();
-    SamplerUtil::Init(false);
-}
-
 bool TwoBallsNoAATest::Execute() {    
     Image image(640, 480);
 
@@ -78,8 +69,4 @@ bool TwoBallsNoAATest::Execute() {
     bool passed = true;
     passed &= ApolloTestFramework::Instance()->ProcessResult(this, &image, "TwoBallsNoAA.png");
     return passed;
-}
-
-void TwoBallsNoAATest::Cleanup() {
-    Apollo::ImageIO::Destroy();
 }

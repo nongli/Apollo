@@ -47,6 +47,15 @@
     <ClCompile Include="CocParserTest.cpp">
       <Filter>Parser</Filter>
     </ClCompile>
+    <ClCompile Include="ProceduralScenes.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="AccelTest.h">
+      <Filter>Includes</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowFlakeAccelTest.cpp">
+      <Filter>AccelTests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApolloTest.h">
@@ -73,6 +82,9 @@
     <ClInclude Include="CoCParserTest.h">
       <Filter>Includes</Filter>
     </ClInclude>
+    <ClInclude Include="ProceduralScenes.h">
+      <Filter>Includes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImageTests">
@@ -95,6 +107,12 @@
     </Filter>
     <Filter Include="MiscTests">
       <UniqueIdentifier>{b8e1df39-299f-4265-adf0-4493e4b5482a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{d0a78b1d-b4df-4f2f-9e0e-338239216f28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AccelTests">
+      <UniqueIdentifier>{10aef8f7-7d58-4ed4-bb4e-8283cec83189}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

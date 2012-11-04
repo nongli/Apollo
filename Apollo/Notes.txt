@@ -1,3 +1,5 @@
 GetLogicalProcessorInformation()
 GetSystemInfo()
 
+Should images be stored as pre multiplied?
+

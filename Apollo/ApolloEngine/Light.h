@@ -27,6 +27,8 @@ namespace Apollo {
         };
 
     public:
+		static Light* CreatePointLight(const Vector3& pos, const Color4f& color, FLOAT intensity);
+
         Light(Light::LIGHTTYPE type);
 
         LIGHTTYPE GetType() const;

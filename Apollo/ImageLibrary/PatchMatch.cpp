@@ -270,7 +270,7 @@ void PatchMatch::Propagate(PatchMatchData& data, const ImagePatch& dstPatch, int
     }
 }
 
-float PatchMatch::ComputePatchDistance(const ImagePatch& src, const ImagePatch& dst, const FilterKernel* kernel, Rect<int>* region, PatchDistance type, float max)
+float PatchMatch::ComputePatchDistance(const ImagePatch& src, const ImagePatch& dst, const FilterKernel* kernel, Rect<int>* region, PatchDistance, float max)
 {
     assert(src.size == dst.size);
     assert(src.size % 2 == 1);

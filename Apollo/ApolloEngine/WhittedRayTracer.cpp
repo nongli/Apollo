@@ -20,10 +20,12 @@ Color4f WhittedRayTracer::RayTrace(const Ray* ray) {
             color = Color4f(1, 0, 1);
         }
         color.a = 1;        // If we hit somthing, alpha = 1
+    } else if (m_env_shader != nullptr) {
+		// TODO: this needs to be environment uv coordinates
+		color = m_env_shader->Shade(m_scene, surfel);
     } else {
-        color = Color4f::BLUE();
-        color.a = 0;        // If we didn't hit anything, alpha = 0
-    }
+		color = Color4f::ZERO();
+	}
     return color;
 }
 

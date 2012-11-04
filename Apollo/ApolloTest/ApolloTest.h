@@ -20,9 +20,9 @@ class ApolloTest {
 public:
     virtual ~ApolloTest();
 
-    virtual void Init()    = 0;
+    virtual void Init();
     virtual bool Execute() = 0;
-    virtual void Cleanup() = 0;
+    virtual void Cleanup();
     virtual const char* GetName() const = 0;
     virtual UINT64 GetTestCategory() const = 0;
     
@@ -37,7 +37,6 @@ protected:
     ApolloTest();
     Apollo::PoolAllocator   m_allocator;
     Apollo::Timer           m_timer;
-
 
 private:
     UINT64  m_TestID;

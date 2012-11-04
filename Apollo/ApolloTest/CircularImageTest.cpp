@@ -99,14 +99,6 @@ private:
     FLOAT   m_minRadius;
 };
 
-CircularImageTest::CircularImageTest() : ApolloTest() {
-}
-
-void CircularImageTest::Init() {
-    ImageIO::Init();
-    Timer::Init();
-}
-
 bool CircularImageTest::Execute() {
     m_timer.Start();
 
@@ -134,8 +126,4 @@ bool CircularImageTest::Execute() {
     ApolloTestFramework::SaveImage(this, c2Scale->ToImage(), "AfterDonut.png", ApolloTestFramework::RESULT_MISC);
     
     return true;
-}
-
-void CircularImageTest::Cleanup() {
-    Apollo::ImageIO::Destroy();
 }

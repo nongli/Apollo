@@ -84,7 +84,7 @@ namespace Apollo
         }
     }
 
-    float FaceRecognition::ComputeDistance(const LuminanceImage<float>* image, const std::vector<float>& target, MatchMetric::Metric metric) const
+    float FaceRecognition::ComputeDistance(const LuminanceImage<float>* image, const std::vector<float>& target, MatchMetric::Metric) const
     {
         float distance = 0;
         std::vector<float> src;
@@ -247,7 +247,6 @@ namespace Apollo
 
                 if (faces.size() == 0)
                 {
-                    continue;
                     throw FaceRecognitionException("No faces found on input image");
                 }
 
