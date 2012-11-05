@@ -116,8 +116,14 @@ public:
     }
 
 	inline void MultAggregate(const Color4f& src, FLOAT s) {
+		/*
 		__m128 sSIMD = _mm_set1_ps(s);
 		simdData = _mm_add_ps(simdData, _mm_mul_ps(src.simdData, sSIMD));		
+		*/
+		r += src.r * s;
+		g += src.g * s;
+		b += src.b * s;
+		a += src.a * s;
 	}
 
 	inline void MultAggregate(const Color4f& src, const Color4f& s)	{

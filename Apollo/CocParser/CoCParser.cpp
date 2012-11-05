@@ -20,6 +20,10 @@ struct Color4f {
     float r, g, b, a;
     Color4f() : r(0), g(0), b(0), a(0) {}
     Color4f(float r, float g, float b) : r(r), g(g), b(b), a(1.0) {}
+
+	Apollo::Color4f ToColor() const {
+		return Apollo::Color4f(r, g, b, a);
+	}
 };
 
 struct CoCShader {
@@ -85,7 +89,7 @@ struct AreaLight : public AmbientLight {
 
 struct PointLight : public AmbientLight {
     Apollo::Vector3 position;
-    TextureValue<int> decay;
+    int decay;
 };
 
 struct DirectionalLight : public AmbientLight {
@@ -95,7 +99,7 @@ struct DirectionalLight : public AmbientLight {
 struct SpotLight : public AmbientLight {
     Apollo::Vector3 direction;
     Apollo::Vector3 position;
-    TextureValue<int> decay;
+    int decay;
     float penumbra;
     float cone_angle;
 };
@@ -227,6 +231,7 @@ bool ParseImageReference(FILE* file, char* buffer, const char* field, string* re
 	    } else {
             *result = buffer;
 	    }
+		return true;
     }
     return false;
 }
@@ -597,7 +602,7 @@ void ParsePointLight(FILE* file, CoCData* data) {
     if (!ParseFloatMap(file, buffer, "intensity", "PointLight", &light.intensity))
 	    CoCParserException::Throw("<PointLight: intensity>");
     fscanf(file, "%s", buffer);
-    if (!ParseIntMap(file, buffer, "decay", "PointLight", &light.decay))
+    if (!ParseInt(file, buffer, "decay", &light.decay))
 	    CoCParserException::Throw("<PointLight: decay>");
     fscanf(file, "%s", buffer);
     ParseInt(file, buffer, "casts_shadow", &light.cast_shadow);
@@ -651,7 +656,7 @@ void ParseSpotLight(FILE* file, CoCData* data) {
     if (!ParseFloatMap(file, buffer, "intensity", "SpotLight", &light.intensity))
 	    CoCParserException::Throw("<SpotLight: intensity>");
     fscanf(file, "%s", buffer);
-    if (!ParseIntMap(file, buffer, "decay", "SpotLight", &light.decay))
+    if (!ParseInt(file, buffer, "decay", &light.decay))
 	    CoCParserException::Throw("<SpotLight: decay>");
     fscanf(file, "%s", buffer);
     if (!ParseFloat(file, buffer, "cone_angle", &light.cone_angle))
@@ -953,25 +958,50 @@ void ConvertToApolloScene(CoCData* data, Apollo::Scene* scene) {
     camera->SetImageDimension(data->width, data->height);
 
     // Set lights
-    Apollo::Light* light = new Apollo::Light(Apollo::Light::AMBIENT);
-    allocator->Add(light);
-    light->SetColor(Apollo::Color4f::WHITE());
-    light->SetIntensity(.1f);
-    light->SetCastShadow(false);
-    scene->AddLight(light);
+	for (size_t i = 0; i < data->pointLights.size(); ++i) {
+		const PointLight& point_light = data->pointLights[i];
+		Apollo::Light* light = Apollo::Light::CreatePointLight(point_light.position, 
+			point_light.tint.value.ToColor(), point_light.intensity.value);
+		light->SetCastShadow(point_light.cast_shadow);
+		if (point_light.decay == 0) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_NONE);
+		if (point_light.decay == 1) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_LINEAR);
+		if (point_light.decay == 2) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_QUADRATIC);
+		scene->AddLight(light);
+	}
 
-    Apollo::Light* point = new Apollo::Light(Apollo::Light::POINT);
-    allocator->Add(point);
-    point->SetPosition(Apollo::Vector3(0, 0, 0));
-    point->SetColor(Apollo::Color4f::WHITE());
-    point->SetIntensity(.3f);
-    point->SetCastShadow(false);
-    scene->AddLight(point);
+	// TODO - Add spot lights
+	for (size_t i = 0; i < data->spotLights.size(); ++i) {
+		const SpotLight& spot_light = data->spotLights[i];
+		Apollo::Light* light = Apollo::Light::CreatePointLight(spot_light.position, 
+			spot_light.tint.value.ToColor(), spot_light.intensity.value);
+		light->SetCastShadow(spot_light.cast_shadow);
+		if (spot_light.decay == 0) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_NONE);
+		if (spot_light.decay == 1) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_LINEAR);
+		if (spot_light.decay == 2) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_QUADRATIC);
+		scene->AddLight(light);
+	}
+
+	// TODO - Add directional lights
+	for (size_t i = 0; i < data->directionalLights.size(); ++i) {
+		const DirectionalLight& directional_light = data->directionalLights[i];
+		Apollo::Vector3 pos = -directional_light.direction;
+		pos *= 10000;
+		Apollo::Light* light = Apollo::Light::CreatePointLight(pos,
+			directional_light.tint.value.ToColor(), directional_light.intensity.value);
+		light->SetCastShadow(directional_light.cast_shadow);
+		light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_NONE);
+		scene->AddLight(light);
+	}
+	
+	for (size_t i = 0; i < data->ambientLights.size(); ++i) {
+		Apollo::Light* light = Apollo::Light::CreateAmbientLight(
+			data->ambientLights[i].tint.value.ToColor(), data->ambientLights[i].intensity.value);
+		scene->AddLight(light);
+	}
 
     // Add Geometry
     for (unsigned int i = 0; i < data->meshes.size(); ++i) {
         MeshData& meshData = data->meshes[i];
-        if (meshData.triangles.size() > 10) continue;
         Apollo::Mesh* mesh = new Apollo::Mesh(meshData.vertices, meshData.normals, meshData.uvs, meshData.triangles);
         allocator->Add(mesh);
         for (unsigned int i = 0; i < data->shaders.size(); ++i) {

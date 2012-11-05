@@ -115,6 +115,8 @@ bool KdTree::Rebuild() {
     if (m_root) free(m_root);
     m_root = nullptr;
 
+	if (m_primitives.empty()) return true;
+
     m_build_tree.resize(KD_START_SIZE);
 
     // Find bounding box
@@ -231,6 +233,9 @@ void KdTree::PartitionTriangles(const KdSplitPlane* splits, UINT32 n, const vect
 }
 
 void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<UINT32>& primitives) {
+	if (curr >= m_build_tree.size()) {
+		m_build_tree.resize(curr * 2);
+	}
     FLOAT split, tsa, inv_tsa;
     KdDim split_dim = DIM_INVALID;
     FLOAT cost = INFINITY;

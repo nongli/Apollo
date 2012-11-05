@@ -4,16 +4,27 @@
 using namespace Apollo;
 using namespace std;
 
-bool CocParserTest::Execute() {
+bool CocParserTest::TestScene(const string& file, const string& reference) {
+    string path = ApolloTestFramework::GetFilepath(file, ApolloTestFramework::DATA_SCENE);
+
     Scene scene;
     m_timer.Start();
-    string file = ApolloTestFramework::GetFilepath("CoC\\cornell_box_ray.coc", ApolloTestFramework::DATA_SCENE);
-    CoC::CoCParser::Parse(file.c_str(), &scene);
+    CoC::CoCParser::Parse(path.c_str(), &scene);
     scene.Initialize();
-    WhittedRayTracer tracer;
+    
+	WhittedRayTracer tracer;
     const Image* image = tracer.RenderAll(&scene);
     m_timer.Stop();
-    
-    ApolloTestFramework::SaveImage(this, image, "Result.png", ApolloTestFramework::RESULT_MISC);
-    return true;
+
+	return  ApolloTestFramework::Instance()->ProcessResult(this, image, reference.c_str());
+}
+
+bool CocParserTest::Execute() {
+	bool passed = true;
+	//passed &= TestScene("CoC\\piano.coc", "Piano.png");  // TODO: this passes but takes ~1min
+	passed &= TestScene("CoC\\cornell_box2.coc", "CornellBox.png");
+	passed &= TestScene("CoC\\dragon.coc", "Dragon.png");
+	passed &= TestScene("CoC\\ring2.coc", "Ring.png");
+	passed &= TestScene("CoC\\teapot.coc", "Teapot.png");
+	return passed;
 }

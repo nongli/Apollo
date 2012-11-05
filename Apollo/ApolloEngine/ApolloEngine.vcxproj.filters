@@ -151,7 +151,7 @@
       <Filter>Includes</Filter>
     </ClInclude>
     <ClInclude Include="ApolloParser.h">
-      <Filter>Parser</Filter>
+      <Filter>Util\Parser</Filter>
     </ClInclude>
     <ClInclude Include="ApolloAllocator.h">
       <Filter>Memory</Filter>
@@ -203,14 +203,14 @@
     <Filter Include="Common">
       <UniqueIdentifier>{5d6d2121-628c-4039-add2-63b8601296bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Parser">
-      <UniqueIdentifier>{71ec7df7-c12a-4f20-add9-ec045566a1c4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Memory">
       <UniqueIdentifier>{3a18fecf-7587-46a0-b658-10242a09a57b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{780fbfae-a503-450b-b970-7f9daf9d6242}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\Parser">
+      <UniqueIdentifier>{71ec7df7-c12a-4f20-add9-ec045566a1c4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

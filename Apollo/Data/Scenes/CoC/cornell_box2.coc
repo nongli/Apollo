@@ -99,6 +99,16 @@ intensity val 30
 decay 1
 shadow_rays 1
 <end>
+
+<lights num=1>
+
+type POINT
+pos 0 0 0
+tint val 1.000000 1.000000 1.000000
+intensity val .550
+decay 1
+casts_shadow 0
+
 <geometry>
 
 # mesh: pPlaneShape1 instance 1/1
@@ -4195,7 +4205,6 @@ usemtl cube_right
 f 781/895/781 782/896/782 783/897/783 
 f 783/897/783 782/896/782 784/898/784
 
-usemtl area_light
 # mesh: pPlaneShape6 instance 1/1
 # vertices: 4
 v -4.011260 9.800000 1.902884
@@ -4220,5 +4229,6 @@ vt 0.000000 1.000000
 vt 1.000000 1.000000
 
 # faces: pPlaneShape6 instance 1/1
+usemtl area_light
 f 785/899/785 787/901/786 786/900/787 
 f 786/900/787 787/901/786 788/902/788 

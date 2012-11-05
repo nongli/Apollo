@@ -99,6 +99,16 @@ intensity val 30
 decay 1
 shadow_rays 30
 <end>
+
+<lights num=1>
+
+type POINT
+pos 0 9.9 0
+tint val 1.000000 1.000000 1.000000
+intensity val .550
+decay val 0
+casts_shadow 0
+
 <geometry>
 
 # mesh: pPlaneShape1 instance 1/1
