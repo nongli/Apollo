@@ -64,6 +64,7 @@ namespace Apollo {
 	inline InfinitePlane::~InfinitePlane() {}
 
     inline bool InfinitePlane::Intersect(const Ray& ray, Intersection& in) const {
+        CHECK_MAILBOX_RAY(ray);
 		DOUBLE num  = - (ray.origin.Dot(normal) + dist);
 		DOUBLE den  = ray.direction.Dot(normal);
 		if (EQ(den, 0)) return NO_HIT;

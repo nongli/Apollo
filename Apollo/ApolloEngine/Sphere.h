@@ -46,6 +46,7 @@ namespace Apollo {
 	inline Sphere::~Sphere() {}
 	
     inline bool Sphere::Intersect(const Ray& ray, Intersection& in) const {	
+        CHECK_MAILBOX_RAY(ray);
 		Vector3 rayOrigin = ray.origin - center;
      
         DOUBLE B = rayOrigin.Dot(ray.direction);

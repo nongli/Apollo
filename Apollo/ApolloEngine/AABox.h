@@ -230,6 +230,7 @@ namespace Apollo {
     }
 
     inline bool AABox::Intersect(const Ray& r, Intersection& in) const {
+        CHECK_MAILBOX_RAY(r);
 		DOUBLE t_n, t_f;
 		DOUBLE t_near = r.t_min;
 		DOUBLE t_far = in.t;

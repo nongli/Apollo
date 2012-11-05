@@ -77,6 +77,7 @@ namespace Apollo {
     }
 
     inline bool Triangle::Intersect(const Ray& ray, Intersection& i) const {
+        CHECK_MAILBOX_RAY(ray);
 		#define ku mod5[k + 1]
 		#define kv mod5[k + 2]
 

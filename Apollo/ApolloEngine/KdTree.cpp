@@ -239,6 +239,7 @@ void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<
     FLOAT split, tsa, inv_tsa;
     KdDim split_dim = DIM_INVALID;
     FLOAT cost = INFINITY;
+    split = 0;
     vector<UINT32> leftPrimitives;
     vector<UINT32> rightPrimitives;
     KdSplitPlane* splits;

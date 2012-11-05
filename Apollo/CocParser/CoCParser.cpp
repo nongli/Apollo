@@ -8,6 +8,7 @@ const int BUFFER_SIZE = 128;
 namespace CoC {
     
 #pragma warning( disable : 4996 )
+#pragma warning( disable : 4800 )
 
 template <typename T>
 struct TextureValue {
@@ -962,7 +963,7 @@ void ConvertToApolloScene(CoCData* data, Apollo::Scene* scene) {
 		const PointLight& point_light = data->pointLights[i];
 		Apollo::Light* light = Apollo::Light::CreatePointLight(point_light.position, 
 			point_light.tint.value.ToColor(), point_light.intensity.value);
-		light->SetCastShadow(point_light.cast_shadow);
+		light->SetCastShadow((bool)point_light.cast_shadow);
 		if (point_light.decay == 0) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_NONE);
 		if (point_light.decay == 1) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_LINEAR);
 		if (point_light.decay == 2) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_QUADRATIC);
@@ -974,7 +975,7 @@ void ConvertToApolloScene(CoCData* data, Apollo::Scene* scene) {
 		const SpotLight& spot_light = data->spotLights[i];
 		Apollo::Light* light = Apollo::Light::CreatePointLight(spot_light.position, 
 			spot_light.tint.value.ToColor(), spot_light.intensity.value);
-		light->SetCastShadow(spot_light.cast_shadow);
+		light->SetCastShadow((bool)spot_light.cast_shadow);
 		if (spot_light.decay == 0) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_NONE);
 		if (spot_light.decay == 1) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_LINEAR);
 		if (spot_light.decay == 2) light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_QUADRATIC);
@@ -988,7 +989,7 @@ void ConvertToApolloScene(CoCData* data, Apollo::Scene* scene) {
 		pos *= 10000;
 		Apollo::Light* light = Apollo::Light::CreatePointLight(pos,
 			directional_light.tint.value.ToColor(), directional_light.intensity.value);
-		light->SetCastShadow(directional_light.cast_shadow);
+		light->SetCastShadow((bool)directional_light.cast_shadow);
 		light->SetLightFalloff(Apollo::Light::LIGHT_FALLOFF_NONE);
 		scene->AddLight(light);
 	}

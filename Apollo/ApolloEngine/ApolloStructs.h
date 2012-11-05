@@ -11,7 +11,7 @@ namespace Apollo {
 		Vector3	    invDirection;
 		BYTE		sign[3];
 		DOUBLE	    t_min, t_max;
-		UINT64	    id;
+		OBJECT_ID   id;
 		BYTE		depth;
 
 		Ray() {};

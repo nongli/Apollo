@@ -13,10 +13,16 @@ namespace Apollo {
     class Model;
     class AABox;
     class Shader;
+    
+#define CHECK_MAILBOX_RAY(ray)                          \
+    do {                                                \
+        if (ray.id == m_last_ray_id) return NO_HIT;     \
+        m_last_ray_id = ray.id;                         \
+    } while (0)                   
 
     class Primitive {
 	public:
-        Primitive(Model* model) : m_model(model) {}
+        Primitive(Model* model) : m_last_ray_id(0), m_model(model) {}
 	    
 	    virtual void Init() = 0;
 
@@ -43,6 +49,7 @@ namespace Apollo {
 	    virtual float SurfaceArea() const = 0;
 
 	protected:
+        mutable OBJECT_ID m_last_ray_id;
 	    Model* m_model;
     };
 }
