@@ -10,13 +10,15 @@ namespace Apollo {
         BlinnPhongShader(const Color4f& diffuse, const Color4f& specular, FLOAT shininess) : 
             m_diffuse(diffuse), m_specular(specular), m_shininess(shininess) {
         }
+              
+        void GetBRDF(const SurfaceElement& surfel, BRDF* brdf) const {
+            m_diffuse.GetSample(surfel.uv, brdf->diffuse);
+            m_specular.GetSample(surfel.uv, brdf->specular);
+            brdf->reflective = brdf->specular;
+        }
 
-        Color4f Shade(const Scene* scene, const SurfaceElement& surfel) const {
+        Color4f Shade(const Scene* scene, const SurfaceElement& surfel, const BRDF& brdf) const {
             FLOAT shininess;
-            Color4f diffuseColor, specularColor;
-
-            m_diffuse.GetSample(surfel.uv, diffuseColor);
-            m_specular.GetSample(surfel.uv, specularColor);
             m_shininess.GetSample(surfel.uv, shininess);
 
             Color4f specular = Color4f::ZERO();
@@ -40,7 +42,7 @@ namespace Apollo {
                     
                     Color4f lightColor = lights[i]->GetRadiance(Vector3::ZERO(), 0);
 
-                    if (specularColor.MagnitudeRGB() != 0) {
+                    if (brdf.specular.MagnitudeRGB() != 0) {
                         Vector3 V = -surfel.ray->direction;
                         Vector3 H = (L + V) / 2;
                         FLOAT NH = (FLOAT)H.Dot(surfel.normal);
@@ -53,7 +55,7 @@ namespace Apollo {
                 }
             }
 
-            return diffuseColor*diffuse + specularColor*specular;
+            return brdf.diffuse*diffuse + brdf.specular*specular;
         }
 
         bool DoesShaderContain(BRDF::TYPE type) const {

@@ -12,7 +12,8 @@ bool CocParserTest::TestScene(const string& file, const string& reference) {
     CoC::CoCParser::Parse(path.c_str(), &scene);
     scene.Initialize();
     
-	WhittedRayTracer tracer;
+	WhittedRayTracer::Settings settings;
+    WhittedRayTracer tracer(settings);
     const Image* image = tracer.RenderAll(&scene);
     m_timer.Pause();
 
@@ -25,6 +26,6 @@ bool CocParserTest::Execute() {
 	passed &= TestScene("CoC\\dragon.coc", "Dragon.png");
 	passed &= TestScene("CoC\\ring2.coc", "Ring.png");
 	passed &= TestScene("CoC\\teapot.coc", "Teapot.png");
-	passed &= TestScene("CoC\\piano.coc", "Piano.png");  // TODO: this passes but takes ~1min on debug
+//	passed &= TestScene("CoC\\piano.coc", "Piano.png");  // TODO: this passes but takes ~1min on debug
 	return passed;
 }

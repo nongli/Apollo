@@ -10,7 +10,17 @@
 namespace Apollo {
     class WhittedRayTracer : public RayTracer {
     public:
-        WhittedRayTracer() : RayTracer("Whitted Ray Tracing") {}
+        struct Settings : RayTracer::Settings {
+            int reflection_depth;
+
+            Settings() {
+                reflection_depth = 0;
+            }
+        };
+
+        WhittedRayTracer(const Settings& settings) : 
+            RayTracer("Whitted Ray Tracing"),
+            m_settings(settings) {}
 
     public:
         ~WhittedRayTracer();
@@ -18,5 +28,8 @@ namespace Apollo {
     protected:
         virtual Color4f RayTrace(const Ray* ray);
         virtual void Initialize();
+        Color4f RayTraceInternal(const Ray* ray, int depth);
+
+        Settings m_settings;
     };
 }

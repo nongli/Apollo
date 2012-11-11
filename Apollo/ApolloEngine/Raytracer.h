@@ -19,6 +19,9 @@ namespace Apollo {
         virtual const Image* Render(const Scene* scene, const Rect<UINT>& region);
 
     public:
+        struct Settings {
+        };
+
         // Render Settings
         void SetPrimarySampler(PrimarySampler*);
         void SetRenderBucket(RenderBucket*);

@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ShaderTest.cpp" />
     <ClCompile Include="SnowFlakeAccelTest.cpp" />
     <ClCompile Include="AccelTest.h" />
     <ClCompile Include="AllocatorTest.cpp" />

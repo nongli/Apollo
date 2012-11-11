@@ -36,3 +36,10 @@ public:
     const char* GetName() const { return "BasicSceneTest"; }    
     UINT64 GetTestCategory() const { return ApolloTestRenderBase; }
 };
+
+class ShaderTest : public ApolloTest {
+public:
+    bool Execute();
+    const char* GetName() const { return "ShaderTest"; }    
+    UINT64 GetTestCategory() const { return ApolloTestRenderBase; }
+};

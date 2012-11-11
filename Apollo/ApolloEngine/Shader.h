@@ -16,11 +16,23 @@ namespace Apollo {
             REFLECTIVE,
             EMISSIVE
         };
+
+    public: 
+        void Reset() {
+            memset(this, 0, sizeof(BRDF));
+        }
+
+    public:
+        Color4f diffuse;
+        Color4f specular;
+        Color4f reflective;
+        Color4f emissive;
     };
 
     class Shader {
     public:
-        virtual Color4f Shade(const Scene* scene, const SurfaceElement&) const = 0;
+        virtual Color4f Shade(const Scene* scene, const SurfaceElement&, const BRDF&) const = 0;
+        virtual void GetBRDF(const SurfaceElement&, BRDF* brdf) const = 0;
         virtual bool DoesShaderContain(BRDF::TYPE) const = 0;
 
     // Static functions that are common across multiple kinds of shaders
@@ -37,18 +49,17 @@ namespace Apollo {
         LambertianShader(const Color4f& color) : m_color(color) {}
 
     public:
-        Color4f Shade(const Scene* scene, const SurfaceElement& surfel) const {
-            Color4f diffuseColor;
-            m_color.GetSample(surfel.uv, diffuseColor);
-            return diffuseColor * ComputeDirectIllumination(scene, surfel);
+        Color4f Shade(const Scene* scene, const SurfaceElement& surfel, const BRDF& brdf) const {
+            return brdf.diffuse * ComputeDirectIllumination(scene, surfel);
         }
-        bool DoesShaderContain(BRDF::TYPE type) const
-        {
-            if (type == BRDF::DIFFUSE)
-            {
-                return true;
-            }
+
+        bool DoesShaderContain(BRDF::TYPE type) const {
+            if (type == BRDF::DIFFUSE) return true;
             return false;
+        }
+
+        void GetBRDF(const SurfaceElement& surfel, BRDF* brdf) const {
+            m_color.GetSample(surfel.uv, brdf->diffuse);
         }
 
     private:

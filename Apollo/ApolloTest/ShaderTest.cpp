@@ -2,12 +2,13 @@
 
 using namespace Apollo;
 
-bool BasicSceneTest::Execute() {    
+bool ShaderTest::Execute() {    
+    m_timer.Start();
     
     PerspectiveCamera camera;
 	camera.SetImageDimension(640, 480);
 	camera.SetAspectRatio(((FLOAT)640)/480);
-	camera.SetPosition(Apollo::Vector3(-1, -1, 10));	
+	camera.SetPosition(Apollo::Vector3(0, 0, 10));	
 	
     Sphere sphere(Apollo::Vector3(2, 1, 0), 1);
     Sphere sphere2(Apollo::Vector3(2.5, -2, 0), 1);
@@ -48,7 +49,6 @@ bool BasicSceneTest::Execute() {
     scene.AddLight(&light);
     scene.Initialize();
 
-    m_timer.Start();
     WhittedRayTracer::Settings settings;
     WhittedRayTracer rayTracer(settings);
     const Image* image = rayTracer.RenderAll(&scene);
