@@ -51,14 +51,13 @@ namespace Apollo {
         UINT32 m_next_node;
         UINT32 m_total_children;
         bool m_dirty;
+		std::vector<Model*>	m_models;
 		std::vector<const Primitive*> m_primitives;
 
 		// Primitives that are not bounded (e.g. infinite plane) and not stored in the tree structure
 		std::vector<const Primitive*> m_unbounded_primitives;
 
-        std::vector<UINT> m_primitives_index;
-		std::vector<Model*>	m_models;
-
+        std::vector<AABox> m_primitive_bounding_boxes;
 		std::vector<KdSplitPlane> m_all_splits[3];
 		std::vector<char> m_split_buffer;
 		std::vector<KdBuildNode> m_build_tree;

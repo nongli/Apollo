@@ -6,12 +6,14 @@ using namespace std;
 
 namespace Apollo {
 
-/* defined constants used for constructing the tree */
+// defined constants used for constructing the tree 
+// TODO: need different settings for debug/release.  Intersections
+// are relatively more expensive on release.
 #define KD_MAX_DEPTH 30  //try 8 + 1.3log(n)
-#define KD_MIN_LEAF 2
-#define KD_ISECT_COST 5
-#define KD_TRAV_COST 1
-#define KD_EMPTY_BONUS .8f
+#define KD_MIN_LEAF 5
+#define KD_ISECT_COST 1
+#define KD_TRAV_COST 8
+#define KD_EMPTY_BONUS 0.8f
 
 #define KD_START_SIZE 1024
 #define STACK_SIZE 256
@@ -62,13 +64,11 @@ struct KdSplitPlane {
 	}
 };
 
-
 struct KdStackNode {
     KdNode* node;
     double t_near;
     double t_far;
 };
-
 
 #define KD_ISLEAF(n)	((n)->d & (UINT32)(1 << 31))
 #define KD_DIM(n)	((n)->d & 0x3)
@@ -135,14 +135,24 @@ bool KdTree::Rebuild() {
         m_all_splits[i].resize(2 * m_primitives.size());
     }
     m_split_buffer.resize(m_primitives.size());
-    m_primitives_index.resize(m_primitives.size());
+    m_primitive_bounding_boxes.resize(m_primitives.size());
+    std::vector<UINT> primitives_index;
+    primitives_index.resize(m_primitives.size());
     for (UINT32 i = 0; i < m_primitives.size(); ++i) {
-        m_primitives_index[i] = i;
+        primitives_index[i] = i;
+        m_primitives[i]->GetAABoundingBox(m_primitive_bounding_boxes[i]);
     }
 
 	m_total_children = 0;
     m_next_node = 2;
-    BuildTree(m_bounds, 0, 1, m_primitives_index);
+    BuildTree(m_bounds, 0, 1, primitives_index);
+	
+    m_all_splits[0].clear();
+	m_all_splits[1].clear();
+	m_all_splits[2].clear();
+	m_split_buffer.clear();
+    m_primitive_bounding_boxes.clear();
+
 	CompactTree();
 
     return true;
@@ -150,11 +160,9 @@ bool KdTree::Rebuild() {
 
 UINT32 KdTree::ComputeSplitPlanes(KdSplitPlane* splits, const vector<UINT32>& primitives, KdDim dim) {
     UINT32 n = 0;
-    AABox box;
 
     for (UINT32 i = 0; i < primitives.size(); ++i) {
-        const Primitive* primitive = m_primitives[primitives[i]];
-        primitive->GetAABoundingBox(box);
+        const AABox& box = m_primitive_bounding_boxes[primitives[i]];
 	    // primitive is inside the plane
         if (EQ(box.min[dim], box.max[dim])) {
 	        splits[n].dim = dim;
@@ -184,14 +192,14 @@ UINT32 KdTree::ComputeSplitPlanes(KdSplitPlane* splits, const vector<UINT32>& pr
 }
 
 // SAH cost
-FLOAT ComputeCost(const AABox bb, FLOAT split, KdDim dim, UINT l, UINT r, UINT p, FLOAT inv_tsa) {
+double ComputeCost(const AABox& bb, FLOAT split, KdDim dim, UINT l, UINT r, UINT p, double inv_tsa) {
     AABox lBB = bb;
     AABox rBB = bb;
     lBB.max[dim] = split;
     rBB.min[dim] = split;
     FLOAT lsa = lBB.SurfaceArea();
     FLOAT rsa = rBB.SurfaceArea();
-    float cost = ((l+p)*lsa + (p+r)*rsa) * inv_tsa * KD_ISECT_COST + KD_TRAV_COST;	
+    double cost = ((l+p)*lsa + (p+r)*rsa) * inv_tsa * KD_ISECT_COST + KD_TRAV_COST;	
     if (l+p == 0 || r+p == 0) cost *= KD_EMPTY_BONUS;
     return cost;
 }
@@ -220,28 +228,25 @@ void KdTree::PartitionTriangles(const KdSplitPlane* splits, UINT32 n, const vect
     }
 
     for (UINT32 i = 0; i < primitives.size(); ++i) {
-        UINT32 primitive = primitives[i];
-        if (m_split_buffer[primitive] == SPLIT_BOTH) {
-            left.push_back(primitive);
-            right.push_back(primitive);
-	    } else if (m_split_buffer[primitive] == SPLIT_LEFT) {
-            left.push_back(primitive);
-	    } else if (m_split_buffer[primitive] == SPLIT_RIGHT) {
-            right.push_back(primitive);
+        UINT32 primitive_idx = primitives[i];
+        if (m_split_buffer[primitive_idx] == SPLIT_BOTH) {
+            left.push_back(primitive_idx);
+            right.push_back(primitive_idx);
+	    } else if (m_split_buffer[primitive_idx] == SPLIT_LEFT) {
+            left.push_back(primitive_idx);
+	    } else if (m_split_buffer[primitive_idx] == SPLIT_RIGHT) {
+            right.push_back(primitive_idx);
 	    }
     }
 }
 
 void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<UINT32>& primitives) {
-	if (curr >= m_build_tree.size()) {
-		m_build_tree.resize(curr * 2);
-	}
-    FLOAT split, tsa, inv_tsa;
+	if (curr >= m_build_tree.size()) m_build_tree.resize(curr * 2);
+    
+    double split, tsa, inv_tsa;
     KdDim split_dim = DIM_INVALID;
-    FLOAT cost = INFINITY;
+    double cost = primitives.size() * KD_ISECT_COST;
     split = 0;
-    vector<UINT32> leftPrimitives;
-    vector<UINT32> rightPrimitives;
     KdSplitPlane* splits;
     UINT32 num_splits[3];
     UINT tL, tR;
@@ -269,20 +274,20 @@ void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<
 		        pStart = pEnd = pPlane = 0;
 
 		        while (splits[i].split == test_split && 
-			        splits[i].type == KdSplitPlane::EXIT &&
-			        i < num_splits[dim]) {
+			            splits[i].type == KdSplitPlane::EXIT &&
+			            i < num_splits[dim]) {
 		            ++pEnd;
 		            ++i;
 		        }
 		        while (splits[i].split == test_split && 
-			        splits[i].type == KdSplitPlane::PLANE &&
-			        i < num_splits[dim]) {
+			            splits[i].type == KdSplitPlane::PLANE &&
+			            i < num_splits[dim]) {
 		            ++pPlane;
 		            ++i;
 		        }
 		        while (splits[i].split == test_split && 
-			        splits[i].type == KdSplitPlane::ENTER &&
-			        i < num_splits[dim]) {
+			            splits[i].type == KdSplitPlane::ENTER &&
+			            i < num_splits[dim]) {
 		            ++pStart;
 		            ++i;
 		        }
@@ -291,7 +296,7 @@ void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<
 		        n_right -= pEnd;
 		        if (test_split < bb.max[dim] && test_split > bb.min[dim]) {
 		            // compute SAH 
-		            FLOAT test_cost = ComputeCost(bb, test_split, (KdDim)dim, n_left, n_right, n_plane, inv_tsa);
+		            double test_cost = ComputeCost(bb, test_split, (KdDim)dim, n_left, n_right, n_plane, inv_tsa);
 		            if (test_cost < cost) {
 			            cost = test_cost;
 			            split_dim = (KdDim)dim;
@@ -305,16 +310,17 @@ void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<
 		        n_plane = 0;
 	        } 
 	    } 
-
-	    if (cost > primitives.size() * KD_ISECT_COST) {
-		    split_dim = DIM_INVALID;	
-        }
     }
 
     /* this node will be split and is an internal node */
     if (split_dim != DIM_INVALID) {
+        vector<UINT32> leftPrimitives;
+        vector<UINT32> rightPrimitives;
+        leftPrimitives.reserve(tL);
+        rightPrimitives.reserve(tR);
         PartitionTriangles(&m_all_splits[split_dim][0], num_splits[split_dim], primitives, 
             leftPrimitives, rightPrimitives, split);
+
         UINT32 lChild = m_next_node;
         UINT32 rChild = m_next_node + 1;
         m_build_tree[curr].children = 0;
@@ -347,19 +353,21 @@ void KdTree::BuildTree(const AABox& bb, UINT32 depth, UINT32 curr, const vector<
 
 void KdTree::CompactTree() {
 	int num_nodes = m_next_node;
-	m_byte_size = sizeof(KdNode) * num_nodes + m_total_children * sizeof(UINT32);
+	m_byte_size = sizeof(KdNode) * num_nodes + m_total_children * sizeof(Primitive*);
 	m_root = (KdNode*)malloc(m_byte_size);
 
     void* cStart = ((char*)m_root) + sizeof(KdNode) * num_nodes;
-    int* children = (int*) cStart;
+    const Primitive** children = (const Primitive**) cStart;
 
     for (unsigned int i = 1; i < num_nodes; ++i) {
 		if (m_build_tree[i].isLeaf) {
-			memcpy(children, m_build_tree[i].children, sizeof(int)*m_build_tree[i].num_children);
 			int offset = ((char*)children - (char*)&m_root[i]);
+            for (int n = 0; n < m_build_tree[i].num_children; ++n) {
+                *children = m_primitives[m_build_tree[i].children[n]];
+                ++children;
+            }
 			assert(offset > 0);
 			KD_INIT_LEAF(m_root[i], m_build_tree[i].num_children, offset);
-			children += m_build_tree[i].num_children;
 		} else {
 			int offset = m_build_tree[i].offset * sizeof(KdNode);
 			int dim = m_build_tree[i].dimension;
@@ -374,10 +382,6 @@ void KdTree::CompactTree() {
 	}
 
 	m_build_tree.clear();
-	m_all_splits[0].clear();
-	m_all_splits[1].clear();
-	m_all_splits[2].clear();
-	m_split_buffer.clear();
 }
 
 bool KdTree::Intersect(const Ray& ray) const {
@@ -399,35 +403,36 @@ bool KdTree::Intersect(const Ray& ray) const {
     while (true) {
 		// if the node is a leaf, intersect all its primitives
 		while (!KD_ISLEAF(node)) {
+	        KdDim dim = (KdDim)KD_DIM(node);
 			// the ray is perpendicular to the split plane 
-			if (EQ(ray.direction[KD_DIM(node)], 0)) { 
-				node = KD_CHILD(node, ray.origin[KD_DIM(node)] > (node -> split));
+			if (EQ(ray.direction[dim], 0)) { 
+				node = KD_CHILD(node, ray.origin[dim] > (node -> split));
 			} else {
-				double d = (node->split - ray.origin[KD_DIM(node)]) * ray.invDirection[KD_DIM(node)];
+				double d = (node->split - ray.origin[dim]) * ray.invDirection[dim];
 				// cull the children 
 				if (d <= t_near) {
 					// continue with far child
-					node = KD_CHILD(node, ray.direction[KD_DIM(node)] > 0);
+					node = KD_CHILD(node, ray.direction[dim] > 0);
 				} else if (d >= t_far) {
 					//continue with near child
-					node = KD_CHILD(node, ray.direction[KD_DIM(node)] < 0);
+					node = KD_CHILD(node, ray.direction[dim] < 0);
 				} else {
 					// traverse both children
 					assert(stack_size < STACK_SIZE);
-					stack[stack_size].node = KD_CHILD(node, ray.direction[KD_DIM(node)] > 0);
+					stack[stack_size].node = KD_CHILD(node, ray.direction[dim] > 0);
 					stack[stack_size].t_near = d;
 					stack[stack_size].t_far = t_far;
 					++stack_size;
-					node = KD_CHILD(node, ray.direction[KD_DIM(node)] < 0);
+					node = KD_CHILD(node, ray.direction[dim] < 0);
 					t_far = d;
 				}
 			}
 		} //end internal node traversal
 
 		// intersect with leaf 
-		int* first_child = (int*)(((char*)node) + KD_OFFSET(node));
+        const Primitive** primitives = (const Primitive**)(((char*)node) + KD_OFFSET(node));
 		for (unsigned int i = 0; i < node->num_children; ++i) {
-			if (m_primitives[first_child[i]]->Intersect(ray)) return HIT;
+			if (primitives[i]->Intersect(ray)) return HIT;
 		}
 
 		// Finished traversing all nodes
@@ -463,35 +468,36 @@ bool KdTree::Intersect(const Ray& ray, Intersection& inter) const {
     while (true) {
 		// if the node is a leaf, intersect all its primitives
 		while (!KD_ISLEAF(node)) {
+            KdDim dim = (KdDim)KD_DIM(node);
 			// the ray is perpendicular to the split plane 
-			if (EQ(ray.direction[KD_DIM(node)], 0)) { 
-				node = KD_CHILD(node, ray.origin[KD_DIM(node)] > (node -> split));
+			if (EQ(ray.direction[dim], 0)) { 
+				node = KD_CHILD(node, ray.origin[dim] > (node -> split));
 			} else {
-				double d = (node->split - ray.origin[KD_DIM(node)]) * ray.invDirection[KD_DIM(node)];
+				double d = (node->split - ray.origin[dim]) * ray.invDirection[dim];
 				// cull the children 
 				if (d <= t_near) {
 					// continue with far child
-					node = KD_CHILD(node, ray.direction[KD_DIM(node)] > 0);
+					node = KD_CHILD(node, ray.direction[dim] > 0);
 				} else if (d >= t_far) {
 					//continue with near child
-					node = KD_CHILD(node, ray.direction[KD_DIM(node)] < 0);
+					node = KD_CHILD(node, ray.direction[dim] < 0);
 				} else {
 					// traverse both children
 					assert(stack_size < STACK_SIZE);
-					stack[stack_size].node = KD_CHILD(node, ray.direction[KD_DIM(node)] > 0);
+					stack[stack_size].node = KD_CHILD(node, ray.direction[dim] > 0);
 					stack[stack_size].t_near = d;
 					stack[stack_size].t_far = t_far;
 					++stack_size;
-					node = KD_CHILD(node, ray.direction[KD_DIM(node)] < 0);
+					node = KD_CHILD(node, ray.direction[dim] < 0);
 					t_far = d;
 				}
 			}
 		} //end internal node traversal
 
 		// intersect with leaf 
-		int* first_child = (int*)(((char*)node) + KD_OFFSET(node));
+        const Primitive** primitives = (const Primitive**)(((char*)node) + KD_OFFSET(node));
 		for (unsigned int i = 0; i < node->num_children; ++i) {
-			hit |= m_primitives[first_child[i]]->Intersect(ray, inter);
+			hit |= primitives[i]->Intersect(ray, inter);
 		}
 
 		// early termination 

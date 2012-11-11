@@ -25,8 +25,6 @@ bool CocParserTest::Execute() {
 	passed &= TestScene("CoC\\dragon.coc", "Dragon.png");
 	passed &= TestScene("CoC\\ring2.coc", "Ring.png");
 	passed &= TestScene("CoC\\teapot.coc", "Teapot.png");
-#ifdef  NDEBUG
 	passed &= TestScene("CoC\\piano.coc", "Piano.png");  // TODO: this passes but takes ~1min on debug
-#endif
 	return passed;
 }
