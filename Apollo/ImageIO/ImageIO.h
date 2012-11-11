@@ -50,6 +50,7 @@ namespace Apollo {
         static void Save(const char* pPath, const Image* image);
 	    static void Load(const char* pPath, ImageData* ppImageData);
         static Image* Load(const char* pPath);
+        static Image* Load(const std::string& path) { return Load(path.c_str()); }
 	    static void Deallocate(ImageData* pImageData);
     };
 }

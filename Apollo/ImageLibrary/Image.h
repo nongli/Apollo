@@ -94,6 +94,9 @@ namespace Apollo {
     public:
         struct Pixel {
             T b, g, r, a;       // For some reason bgra seems more "standard"
+            float GetLuminance() const {
+                return .39 * r + .50 * g + .11 * b;
+            }
         };
 
     public:
@@ -135,7 +138,7 @@ namespace Apollo {
                 data[i] = (BYTE)CLAMP(.39 * pixel.r + .50 * pixel.g + .11 * pixel.b, 0, 255);
             }
             return image;
-        }
+        }     
 
     public:
         SimpleImage<T>* Crop(UINT32 col, UINT32 row, UINT32 w, UINT32 h) const {

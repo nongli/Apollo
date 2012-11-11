@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
     g_TestFramework.SetSaveAllOutput(true);
 
     printf("Executing Tests...\n");
-	g_TestFramework.ExecuteAllTests();
+	//g_TestFramework.ExecuteAllTests();
     //g_TestFramework.ExecuteTests(ApolloTestRenderBase);
 	
     //g_TestFramework.ExecuteTestNum(1);
@@ -65,7 +65,7 @@ int main(int argc, char** argv) {
 	//g_TestFramework.ExecuteTestNum(8);
 	//g_TestFramework.ExecuteTestNum(9);
 	//g_TestFramework.ExecuteTestNum(10);
-	//g_TestFramework.ExecuteTestNum(11);
+	g_TestFramework.ExecuteTestNum(11);
 	//g_TestFramework.ExecuteTestNum(12);
 
     printf("\n\n");

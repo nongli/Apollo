@@ -82,11 +82,13 @@
     <ClCompile Include="ImageGenerator.cpp" />
     <ClCompile Include="ImageMetrics.cpp" />
     <ClCompile Include="PatchMatch.cpp" />
+    <ClCompile Include="SeamCarving.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageDiffer.h" />
     <ClInclude Include="PatchMatch.h" />
+    <ClInclude Include="SeamCarving.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.vcxproj">

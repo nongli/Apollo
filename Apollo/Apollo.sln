@@ -62,6 +62,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CocParser", "CocParser\CocP
 		{D91C71F8-3C58-473F-8A9E-77B6F233FC02} = {D91C71F8-3C58-473F-8A9E-77B6F233FC02}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeamCarvingApp", "SeamCarvingApp\SeamCarvingApp.vcxproj", "{AFA4BDD2-60A4-46AA-A563-D5E6B6544A1E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6323B34E-7BE6-4BDD-B0F2-F004771B34DB} = {6323B34E-7BE6-4BDD-B0F2-F004771B34DB}
+		{4BA8CD69-A14D-4D8E-86E4-0E52019901D6} = {4BA8CD69-A14D-4D8E-86E4-0E52019901D6}
+		{D91C71F8-3C58-473F-8A9E-77B6F233FC02} = {D91C71F8-3C58-473F-8A9E-77B6F233FC02}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -120,6 +127,10 @@ Global
 		{2B39CDE1-7FEB-470A-B568-837DAA01D381}.Debug|Win32.Build.0 = Debug|Win32
 		{2B39CDE1-7FEB-470A-B568-837DAA01D381}.Release|Win32.ActiveCfg = Release|Win32
 		{2B39CDE1-7FEB-470A-B568-837DAA01D381}.Release|Win32.Build.0 = Release|Win32
+		{AFA4BDD2-60A4-46AA-A563-D5E6B6544A1E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AFA4BDD2-60A4-46AA-A563-D5E6B6544A1E}.Debug|Win32.Build.0 = Debug|Win32
+		{AFA4BDD2-60A4-46AA-A563-D5E6B6544A1E}.Release|Win32.ActiveCfg = Release|Win32
+		{AFA4BDD2-60A4-46AA-A563-D5E6B6544A1E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
