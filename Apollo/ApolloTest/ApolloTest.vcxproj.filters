@@ -59,6 +59,9 @@
     <ClCompile Include="ShaderTest.cpp">
       <Filter>RenderTests</Filter>
     </ClCompile>
+    <ClCompile Include="CornellBoxTest.cpp">
+      <Filter>RenderTests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApolloTest.h">

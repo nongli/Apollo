@@ -43,3 +43,10 @@ public:
     const char* GetName() const { return "ShaderTest"; }    
     UINT64 GetTestCategory() const { return ApolloTestRenderBase; }
 };
+
+class CornellBoxTest : public ApolloTest {
+public:
+    bool Execute();
+    const char* GetName() const { return "CornellBoxTest"; }    
+    UINT64 GetTestCategory() const { return ApolloTestRenderBase; }
+};

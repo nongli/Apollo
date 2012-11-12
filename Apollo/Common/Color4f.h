@@ -178,6 +178,10 @@ public:
         return c;
     }
 
+    inline static Color4f FromRGB(int r, int g, int b, int a = 255) {
+        return Color4f(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
+    }
+
     inline static Color4f FromHSV(FLOAT h, FLOAT s, FLOAT v) {
         UINT32 i;
 	    FLOAT f, p, q, t;
