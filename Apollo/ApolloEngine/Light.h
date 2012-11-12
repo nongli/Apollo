@@ -20,12 +20,6 @@ namespace Apollo {
 	        PROJECTION,
         };
 
-        enum FALLOFF {
-	        LIGHT_FALLOFF_NONE	= 0,
-	        LIGHT_FALLOFF_LINEAR,
-	        LIGHT_FALLOFF_QUADRATIC,
-        };
-
     public:
 		static Light* CreatePointLight(const Vector3& pos, const Color4f& color, FLOAT intensity);
 		static Light* CreateAmbientLight(const Color4f& color, FLOAT intensity);
@@ -35,8 +29,8 @@ namespace Apollo {
         LIGHTTYPE GetType() const;
 
         // Set/Get Falloff
-	    void SetLightFalloff(FALLOFF);
-	    FALLOFF GetLightFalloff() const;
+	    void SetLightFalloff(double);
+	    double GetLightFalloff() const;
 
         // Set/Get Position
 	    void SetPosition(const Vector3& pos);
@@ -74,7 +68,7 @@ namespace Apollo {
 	    Color4f		m_color;
 	    FLOAT		m_intensity;
 
-	    FALLOFF	    m_fallOff;
+	    double      m_fallOff;
 
 	    /* Spot light data */
 	    double		spotCosMaxAngle;
@@ -86,14 +80,13 @@ namespace Apollo {
 
     inline Color4f Light::GetRadiance(const Vector3& dir, double d) {
         UNREFERENCED_PARAMETER(dir);
-        UNREFERENCED_PARAMETER(d);
 
+        FLOAT atten = (FLOAT)(1 / pow(d, m_fallOff));
         //TODO
 	    switch (m_type) {
             case AMBIENT:
 	        case POINT:
-                return m_color * m_intensity;
-		        break;
+                return m_color * m_intensity * atten;
 
 	        default:
                 ApolloException::NotYetImplemented();
@@ -106,14 +99,14 @@ namespace Apollo {
 		m_intensity(1),
         m_type(type),
         m_shadow(true),
-        m_fallOff(LIGHT_FALLOFF_QUADRATIC) {
+        m_fallOff(1.0) {
     }
     
-    inline void Light::SetLightFalloff(FALLOFF type) {
+    inline void Light::SetLightFalloff(double type) {
 	    m_fallOff = type;
     }
 
-    inline Light::FALLOFF Light::GetLightFalloff() const {
+    inline double Light::GetLightFalloff() const {
 	    return m_fallOff;
     }
 

@@ -36,6 +36,7 @@ bool BasicSceneTest::Execute() {
 
     Light light(Light::POINT);
     light.SetPosition(Vector3(2, 2, 10));
+    light.SetLightFalloff(0);
 
     Scene scene;
     scene.SetCamera(&camera);

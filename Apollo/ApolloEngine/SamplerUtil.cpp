@@ -10,24 +10,7 @@ void SamplerUtil::Init(bool randSeed) {
 	}
 }
 
-Vector3 SamplerUtil::RandSphereSample() {
-    DOUBLE x, y, z;
-    do {
-		x = RandDouble() - .5;
-		y = RandDouble() - .5;
-		z = RandDouble() - .5;
-    } while (x*x + y*y + z*z > 1.0f);
-    return Vector3(x, y, z).GetDirection();
-}
 
-Vector3  SamplerUtil::RandSphereSample(DOUBLE u, DOUBLE v) {
-    DOUBLE z	= u;
-    DOUBLE r	= sqrt(MAX(0.f, 1.f - z*z));
-    DOUBLE phi	= APOLLO_2_PI * v;
-    DOUBLE x	= r * cos(phi);
-    DOUBLE y	= r * sin(phi);
-    return Vector3(x, y, z).GetDirection();
-}
 
 Vector3 SamplerUtil::RandHemiSphereSample(const Vector3& n) {
     DOUBLE x, y, z;

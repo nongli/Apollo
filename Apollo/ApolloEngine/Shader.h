@@ -85,7 +85,7 @@ namespace Apollo {
                     }
                 }
 
-                Color4f lightColor = lights[i]->GetRadiance(Vector3::ZERO(), 0);
+                Color4f lightColor = lights[i]->GetRadiance(Vector3::ZERO(), distance);
                 color.MultAggregate(lightColor, LN);
             }
         }

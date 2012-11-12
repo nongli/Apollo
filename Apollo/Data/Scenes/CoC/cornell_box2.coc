@@ -106,7 +106,7 @@ type POINT
 pos 0 0 0
 tint val 1.000000 1.000000 1.000000
 intensity val .550
-decay 1
+decay 0
 casts_shadow 0
 
 <geometry>

@@ -35,6 +35,7 @@
 
 #include "Renderer.h"
 #include "Raytracer.h"
+#include "PathTracer.h"
 #include "WhittedRayTracer.h"
 
 #include "Shader.h"

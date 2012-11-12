@@ -9,7 +9,7 @@ void AddModel(vector<Model*>& models, Model* model, Shader* shader) {
 }
 
 Camera* ProceduralScenes::CornellBox(vector<Model*>& models, vector<Light*>& lights) {
-    lights.push_back(Light::CreatePointLight(Vector3(0, 9.9f, -5), Color4f::WHITE(), 1));
+    lights.push_back(Light::CreatePointLight(Vector3(0, 9.999f, -5), Color4f::WHITE(), 3));
 
     LambertianShader* floor_shader = new LambertianShader(Color4f::FromRGB(230, 190, 120));
     LambertianShader* left_wall_shader = new LambertianShader(Color4f::FromRGB(180, 35, 20));
@@ -82,7 +82,7 @@ Camera* ProceduralScenes::KochSnowFlake(vector<Model*>& models, vector<Light*>& 
 	shaders.push_back(new LambertianShader(Color4f::GREEN()));
 	shaders.push_back(new LambertianShader(Color4f::BLUE()));
 
-	lights.push_back(Light::CreatePointLight(Vector3(0, 0, 10), Color4f(1, 1, 1), 1));
+	lights.push_back(Light::CreatePointLight(Vector3(0, 0, 10), Color4f(1, 1, 1), 3));
 	GenerateSnowFlake(shaders, models, sphere, depth);
 	return new PerspectiveCamera(Vector3(5, 0, 3), Vector3(-5, 0, -3));
 }

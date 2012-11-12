@@ -16,6 +16,10 @@ namespace Apollo {
 
 		Ray() {};
 
+        Ray(const Ray& other) {
+            Set(other.origin, other.direction, other.depth);
+        }
+
 		Ray(const Vector3& o, const Vector3& d, BYTE depth=0) { 
 			Set(o, d, depth);
 		};

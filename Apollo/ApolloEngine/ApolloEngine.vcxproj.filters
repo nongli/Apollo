@@ -55,6 +55,9 @@
     <ClCompile Include="Light.cpp">
       <Filter>Lights</Filter>
     </ClCompile>
+    <ClCompile Include="PathTracer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AABox.h">
@@ -164,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="Metrics.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="PathTracer.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

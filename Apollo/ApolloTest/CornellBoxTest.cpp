@@ -18,12 +18,19 @@ bool CornellBoxTest::Execute() {
 	scene.AddModels(models);
 	scene.AddLights(lights);
 	
-    m_timer.Start();
+    m_timer.Resume();
     scene.Initialize();
     WhittedRayTracer::Settings settings;
     WhittedRayTracer tracer(settings);
     const Image* image = tracer.RenderAll(&scene);
-    m_timer.Stop();
+    
+    PathTracer::Settings path_tracer_settings;
+    path_tracer_settings.samples_per_pixel = 5;
+    path_tracer_settings.max_depth = 2;
+    PathTracer path_tracer(path_tracer_settings);
+    const Image* path_image = path_tracer.RenderAll(&scene);
+    ApolloTestFramework::Instance()->SaveImage(this, path_image, "CornellBoxPath.png", ApolloTestFramework::RESULT_MISC);
+    m_timer.Pause();
 
     bool passed = true;
     passed &= ApolloTestFramework::Instance()->ProcessResult(this, image, "CornellBoxRay.png");
